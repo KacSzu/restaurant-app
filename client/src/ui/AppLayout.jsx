@@ -5,7 +5,7 @@ function AppLayout() {
   return (
     <div className="flex ">
       <Sidebar />
-      <main className="flex-1 bg-neutral-50 ">
+      <main className="flex-1  ">
         <Outlet />
       </main>
     </div>
