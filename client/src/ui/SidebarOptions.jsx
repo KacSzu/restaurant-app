@@ -20,7 +20,7 @@ function SidebarOptions({ isOpen }) {
     },
     {
       title: "Ready to serve",
-      to: "overview",
+      to: "ready",
       icon: <HiOutlineClock />,
     },
     {

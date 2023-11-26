@@ -5,13 +5,18 @@ const base =
 const styles = {
   primary:
     base +
-    " uppercase xl:text-base  bg-emerald-200 p-3 focus:ring-emerald-300 hover:bg-emerald-300 xl:p-5 ",
+    " uppercase xl:text-base  bg-emerald-300 py-2 px-3 focus:ring-emerald-400 hover:bg-emerald-400 xl:p-5 border border-emerald-700 ",
   danger:
     base +
-    "  uppercase xl:text-base bg-red-200 p-3 focus:ring-red-300 hover:bg-red-300 xl:p-5",
+    "  uppercase xl:text-base bg-red-300 py-2 px-3 border border-red-700 focus:ring-red-400 hover:bg-red-400 xl:p-5",
 };
 function Button({ children, to, variation }) {
-  if (to) return <Link to={to} />;
+  if (to)
+    return (
+      <Link to={to} className={styles[variation]}>
+        {children}
+      </Link>
+    );
   return <button className={styles[variation]}>{children}</button>;
 }
 
