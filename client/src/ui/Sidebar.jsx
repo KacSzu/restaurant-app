@@ -21,7 +21,7 @@ function Sidebar() {
         <HiArrowRight />
       </ButtonIcon>
       <Logo />
-      <SidebarOptions isOpen={isOpen} />
+      <SidebarOptions setIsOpen={setIsOpen} isOpen={isOpen} />
     </div>
   );
 }

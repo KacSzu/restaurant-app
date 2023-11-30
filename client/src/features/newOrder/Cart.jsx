@@ -1,10 +1,11 @@
 import { useState } from "react";
-import ButtonIcon from "../../ui/ButtonIcon";
-import { HiTrash } from "react-icons/hi2";
 import Button from "../../ui/Button";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-  const [cartItems] = useState([{ name: "Pizza", price: 15, quantity: 4 }]);
+  const [cartItems] = useState([
+    { name: "Marghartita", price: 15, quantity: 4 },
+  ]);
 
   const calculateTotal = () => {
     return cartItems
@@ -16,13 +17,8 @@ const Cart = () => {
     <div className=" grid grid-rows-[0.05fr,0.75fr,0.05fr,0.15fr] divide-y divide-black pt-8">
       <h2 className="text-center uppercase">Your Cart</h2>
       <ul>
-        {cartItems.map((item, index) => (
-          <li className="pl-4" key={index}>
-            {item.quantity} x {item.name} - ${item.price}
-            <ButtonIcon>
-              <HiTrash />
-            </ButtonIcon>
-          </li>
+        {cartItems.map(({ quantity, name, price }, index) => (
+          <CartItem quantity={quantity} name={name} price={price} key={index} />
         ))}
       </ul>
       <p className="pl-4">Total: ${calculateTotal()}</p>
