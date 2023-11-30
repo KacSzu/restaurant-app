@@ -8,9 +8,10 @@ function ButtonIcon({ children, variation, isOpen, onClick }) {
         isOpen ? " rotate-180 " : ""
       }`,
     sidebarOption: base + " text-2xl  p-2 focus:ring-neutral-300 xl:text-4xl",
-    accordion:
+    small:
       base +
       ` text-lg p-2 hover:bg-neutral-300 focus:ring-neutral-300  duration-500 `,
+    cart: base + " text-xl p-1 focus:ring-neutral-300  duration-500 ",
   };
 
   return (

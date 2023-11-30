@@ -39,7 +39,7 @@ function Accordion() {
               }
             >
               <ButtonIcon
-                variation="accordion"
+                variation="small"
                 onClick={() => toggleAccordion(index)}
               >
                 <HiArrowDown />

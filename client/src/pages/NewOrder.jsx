@@ -1,5 +1,5 @@
-import Cart from "../features/newOrder/Cart";
-import Menu from "../features/newOrder/Menu";
+import Cart from "../features/cart/Cart";
+import Menu from "../features/menu/Menu";
 
 function NewOrder() {
   return (

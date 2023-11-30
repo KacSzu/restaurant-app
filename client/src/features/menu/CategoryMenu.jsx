@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useMenu } from "./useMenu";
 import MenuItem from "./MenuItem";
+import Loader from "../../ui/Loader";
 
 function CategoryMenu() {
   const { menu, isLoading } = useMenu();
-  console.log(menu, isLoading);
   const navigate = useNavigate();
+  if (isLoading) return <Loader />;
   return (
     <div>
-      <button onClick={() => navigate(-1)}>go back</button>;
+      <button disabled={isLoading} onClick={() => navigate(-1)}>
+        go back
+      </button>
+      ;
       <div className="mx-auto mt-10 flex max-w-[550px] flex-col  gap-3 divide-y divide-black rounded-lg bg-neutral-200 px-4 py-3">
-        {menu?.data.map(({ name, unitPrice, ingredients }, index) => (
+        {menu?.data.map(({ _id, name, unitPrice, ingredients }, index) => (
           <MenuItem
+            id={_id}
             index={index}
             key={name}
             name={name}

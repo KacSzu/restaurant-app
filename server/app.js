@@ -1,8 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 const menuRoutes = require("./routes/menuRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const errorMiddleware = require("./middleware/errors");
 const ErrorHandler = require("./utils/errorHandler");
 //
@@ -12,7 +14,8 @@ app.use((req, res, next) => {
   next();
 });
 //
-app.use("/api/v1", menuRoutes);
+app.use("/api/v1/menu", menuRoutes);
+app.use("/api/v1/orders", orderRoutes);
 app.all("*", (req, res, next) => {
   next(new ErrorHandler(`${req.originalUrl} route not found`, 404));
 });

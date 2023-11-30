@@ -8,7 +8,7 @@ export async function getMenu(filter) {
     if (!res.ok) throw new Error("Fetching went wrong");
     const data = await res.json();
     return data;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error(error);
   }
 }
