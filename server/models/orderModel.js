@@ -11,6 +11,7 @@ const orderSchema = new Schema({
     },
   },
   cart: { type: [{}], required: [true, "Cart can not be empty"] },
+  tableNumber: { type: Number, required: [true, "Please add table number"] },
   created_at: {
     type: Date,
     default: Date.now,

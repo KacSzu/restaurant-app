@@ -9,7 +9,7 @@ function CartItem({ id, quantity, name, totalPrice }) {
     dispatch(deleteItem(id));
   }
   return (
-    <li className="flex items-center px-2  pl-6 text-[12px]">
+    <li className="flex items-center px-2  pl-6 ">
       <span>
         {quantity} x {name} - {formatCurrency(totalPrice)}
       </span>

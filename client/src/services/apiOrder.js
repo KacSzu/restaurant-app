@@ -10,12 +10,12 @@ export async function getOrders() {
   }
 }
 
-export async function createOrder(cart) {
+export async function createOrder(cart, tableNumber) {
   try {
-    console.log(JSON.stringify(cart));
     const res = await fetch("/api/v1/orders/new", {
       method: "POST",
-      body: JSON.stringify(cart),
+
+      body: JSON.stringify({ cart, tableNumber }),
       headers: {
         "Content-Type": "application/json",
       },

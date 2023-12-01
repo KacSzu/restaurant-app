@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
+  tableNumber: 0,
 };
 
 const cartSlice = createSlice({
@@ -28,6 +29,12 @@ const cartSlice = createSlice({
     clearCart(state) {
       state.cart = [];
     },
+    setTableNumber(state, action) {
+      state.tableNumber = action.payload;
+    },
+    resetTableNumber(state) {
+      state.tableNumber = 0;
+    },
   },
 });
 
@@ -37,6 +44,8 @@ export const {
   deleteItem,
   increaseQuantity,
   decreaseQuantity,
+  setTableNumber,
+  resetTableNumber,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
@@ -48,3 +57,5 @@ export const getCurrentQuantityById = (id) => (state) =>
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((acc, cur) => acc + cur.totalPrice, 0) || 0;
+
+export const getTableNumber = (state) => state.cart.tableNumber;
