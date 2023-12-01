@@ -8,11 +8,10 @@ export function useCreateOrder() {
   const queryClient = useQueryClient();
   const cart = useSelector(getCart);
   const tableNumber = useSelector(getTableNumber);
-  console.log(tableNumber);
-  const { mutate: createOrder, isLoad10ing: isCreating } = useMutation({
+  const { isLoading: isCreating, mutate: createOrder } = useMutation({
     mutationFn: () => createOrderApi(cart, tableNumber),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "orders" });
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
       toast.success("Order successfully created");
       dispatch(clearCart());
     },

@@ -25,7 +25,7 @@ function SidebarOptions({ isOpen, setIsOpen }) {
     },
     {
       title: "Settings",
-      to: "overview",
+      to: "settings",
       icon: <HiOutlineCog6Tooth />,
     },
   ];

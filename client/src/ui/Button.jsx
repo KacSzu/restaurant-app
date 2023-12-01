@@ -14,6 +14,9 @@ function Button({ children, to, variation, onClick, disabled }) {
     small:
       base +
       " text-xs px-3 py-2 bg-emerald-300 focus:ring-emerald-400 hover:bg-emerald-400 border border-emerald-700",
+    logout:
+      base +
+      " text-xl px-4 py-2 bg-red-300 py-2 px-3 border border-red-700 focus:ring-red-400 hover:bg-red-400 xl:p-5 uppercase font-semibold ",
   };
   if (to)
     return (

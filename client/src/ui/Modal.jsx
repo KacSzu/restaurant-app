@@ -34,7 +34,7 @@ function Window({ children, name }) {
 
   return createPortal(
     <div className=" fixed left-0 top-0 z-50 h-screen w-full bg-white bg-opacity-10  backdrop-blur-sm transition-all duration-500">
-      <div className="fixed left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 transform rounded-[30px] bg-white shadow-lg ring-2 ring-black ring-offset-2 ring-offset-white transition-all duration-500">
+      <div className="fixed left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 transform rounded-[30px] bg-white shadow-lg ring-2 ring-neutral-800 ring-offset-2 ring-offset-white transition-all duration-500">
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </div>
     </div>,

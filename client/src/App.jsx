@@ -6,6 +6,7 @@ import ReadyToServe from "./pages/ReadyToServe";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Settings from "./pages/Settings";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/overview" element={<Overview />} />
             <Route path="/newOrder" element={<NewOrder />} />
             <Route path="/ready" element={<ReadyToServe />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>

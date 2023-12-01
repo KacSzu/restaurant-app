@@ -8,18 +8,18 @@ import Error from "../../ui/Error";
 function ConfirmOrder({ onCloseModal }) {
   const { createOrder, isCreating } = useCreateOrder();
   const cart = useSelector(getCart);
+  const dispatch = useDispatch();
   const emptyCart = !cart.length;
   const tableNumber = useSelector(getTableNumber);
   console.log(tableNumber);
   function handleCreateOrder(e) {
     e.preventDefault();
-    if (emptyCart || !tableNumber) return;
+    if (emptyCart || tableNumber <= 0) return;
     createOrder();
-    dispatch(setTableNumber(0));
+    dispatch(setTableNumber(1));
     onCloseModal?.();
   }
-
-  const dispatch = useDispatch();
+  console.log(isCreating);
   if (isCreating) return <Loader />;
   return (
     <form
@@ -33,17 +33,24 @@ function ConfirmOrder({ onCloseModal }) {
           className="rounded-full  border border-neutral-500 px-2 py-1 pl-5 uppercase"
           placeholder="#table number"
           name="tableNumber"
+          value={tableNumber}
+          type="Number"
           id="tableNumber"
-          onChange={(e) => dispatch(setTableNumber(Number(e.target.value)))}
+          onChange={(e) => {
+            dispatch(setTableNumber(Number(e.target.value)));
+          }}
         />
-        {tableNumber === 0 && <Error>Table number can not be empty </Error>}
+
+        {tableNumber <= 0 && (
+          <Error>Table number can not be lower than 1</Error>
+        )}
       </div>
       <div className="space-x-4 py-4 text-center">
         <Button
           disabled={isCreating}
           type="reset"
           onClick={() => {
-            dispatch(setTableNumber(0));
+            dispatch(setTableNumber(1));
             onCloseModal?.();
           }}
           variation="danger"

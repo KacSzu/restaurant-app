@@ -31,7 +31,7 @@ function MenuBoxes() {
   }
 
   return (
-    <div className="mt-16 grid w-full  grid-cols-2  justify-items-center gap-y-8  uppercase xl:mt-24 xl:gap-y-12">
+    <div className=" grid w-full  grid-cols-2  justify-items-center gap-y-8  uppercase xl:mt-24 xl:gap-y-12">
       {menuOptions.map(({ title, img, category }) => (
         <MenuBox
           onClick={handleClick}

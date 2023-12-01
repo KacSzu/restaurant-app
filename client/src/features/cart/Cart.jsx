@@ -13,7 +13,7 @@ const Cart = () => {
   const totalPrice = useSelector(getTotalCartPrice);
 
   return (
-    <div className=" grid grid-rows-[0.05fr,0.75fr,0.05fr,0.15fr] divide-y divide-black pt-8">
+    <section className=" grid grid-rows-[0.05fr,0.75fr,0.05fr,0.15fr] divide-y divide-neutral-800 pt-8">
       <h2 className="text-center uppercase">Your Cart</h2>
       {emptyCart ? (
         <div>
@@ -58,7 +58,7 @@ const Cart = () => {
           </Modal.Window>
         </Modal>
       </div>
-    </div>
+    </section>
   );
 };
 

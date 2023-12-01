@@ -3,7 +3,7 @@ import Menu from "../features/menu/Menu";
 
 function NewOrder() {
   return (
-    <div className="grid h-screen grid-cols-[2fr,1fr] divide-x divide-black  ">
+    <div className="grid h-screen grid-cols-[2fr,1fr] divide-x divide-neutral-800  ">
       <Menu />
       <Cart />
     </div>
