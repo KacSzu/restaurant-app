@@ -7,6 +7,7 @@ export default defineConfig({
     proxy: {
       "/api/v1/menu": "http://localhost:5000",
       "/api/v1/orders": "http://localhost:5000",
+      "/api/v1/user": "http://localhost:5000",
     },
   },
 });

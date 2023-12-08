@@ -2,33 +2,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTableNumber, setTableNumber } from "./cartSlice";
 import Button from "../../ui/Button";
 import { useCreateOrder } from "./useCreateOrder";
-import Loader from "../../ui/Loader";
 import Error from "../../ui/Error";
 
 function ConfirmOrder({ onCloseModal }) {
-  const { createOrder, isCreating } = useCreateOrder();
+  const { createOrder, isPending } = useCreateOrder();
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
   const emptyCart = !cart.length;
   const tableNumber = useSelector(getTableNumber);
-  console.log(tableNumber);
-  function handleCreateOrder(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     if (emptyCart || tableNumber <= 0) return;
     createOrder();
     dispatch(setTableNumber(1));
     onCloseModal?.();
   }
-  console.log(isCreating);
-  if (isCreating) return <Loader />;
   return (
     <form
       className="mx-auto mt-6 flex w-[350px] flex-col items-center  space-y-4 px-6"
-      onSubmit={handleCreateOrder}
+      onSubmit={handleSubmit}
       method="POST"
     >
       <div className=" flex flex-col gap-4">
-        <label htmlFor="tableNumber">Please add table number</label>
+        <label className="text-center" htmlFor="tableNumber ">
+          Please add table number
+        </label>
         <input
           className="rounded-full  border border-neutral-500 px-2 py-1 pl-5 uppercase"
           placeholder="#table number"
@@ -47,7 +45,7 @@ function ConfirmOrder({ onCloseModal }) {
       </div>
       <div className="space-x-4 py-4 text-center">
         <Button
-          disabled={isCreating}
+          disabled={isPending}
           type="reset"
           onClick={() => {
             dispatch(setTableNumber(1));
@@ -57,7 +55,7 @@ function ConfirmOrder({ onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isCreating || !tableNumber} variation="primary">
+        <Button disabled={isPending || !tableNumber} variation="primary">
           Submit
         </Button>
       </div>

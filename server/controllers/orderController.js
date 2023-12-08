@@ -13,9 +13,9 @@ exports.getOrders = catchAsyncErrors(async (req, res) => {
 exports.createOrder = catchAsyncErrors(async (req, res) => {
   const { cart, tableNumber } = req.body;
   const order = await Orders.create({ cart, tableNumber });
-  return res.status(201).json({
+  return res.status(200).json({
     success: true,
-    message: "Successfully created order",
+    message: "Order created sucessfully",
     data: order,
   });
 });

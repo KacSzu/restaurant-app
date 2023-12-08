@@ -1,4 +1,4 @@
-function SettingsRow({ children, label }) {
+function FormRow({ children, label }) {
   return (
     <div className="flex flex-col items-center gap-3 ">
       <label htmlFor={children.props.id} className="text-lg font-semibold">
@@ -9,4 +9,4 @@ function SettingsRow({ children, label }) {
   );
 }
 
-export default SettingsRow;
+export default FormRow;

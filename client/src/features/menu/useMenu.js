@@ -4,9 +4,10 @@ import { useSearchParams } from "react-router-dom";
 
 export function useMenu() {
   const [searchParams] = useSearchParams();
+  const category = searchParams.get("category") || null;
 
-  const category = searchParams.get("category");
   const filter = !category ? null : `?category=${category}`;
+
   const { data: menu, isLoading } = useQuery({
     queryFn: () => getMenu(filter),
     queryKey: ["menu", category],

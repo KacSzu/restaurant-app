@@ -3,12 +3,14 @@ import { createOrder as createOrderApi } from "../../services/apiOrder";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTableNumber } from "./cartSlice";
 import toast from "react-hot-toast";
+import { getCurrentUser } from "../authentication/userSlice";
 export function useCreateOrder() {
+  const user = useSelector(getCurrentUser);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const cart = useSelector(getCart);
   const tableNumber = useSelector(getTableNumber);
-  const { isLoading: isCreating, mutate: createOrder } = useMutation({
+  const { mutate: createOrder, isPending } = useMutation({
     mutationFn: () => createOrderApi(cart, tableNumber),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
@@ -19,5 +21,7 @@ export function useCreateOrder() {
       toast.error("Order could not be created");
     },
   });
-  return { createOrder, isCreating };
+  if (user) {
+    return { createOrder, isPending };
+  }
 }
