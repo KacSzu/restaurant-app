@@ -23,7 +23,7 @@ const Cart = () => {
           <EmptyCart />
         </div>
       ) : (
-        <ul>
+        <ul className="divide-y divide-neutral-300 overflow-scroll">
           {cart.map(({ id, quantity, name, totalPrice }, index) => (
             <CartItem
               id={id}

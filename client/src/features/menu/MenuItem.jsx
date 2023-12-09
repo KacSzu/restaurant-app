@@ -18,7 +18,7 @@ function MenuItem({ id, name, ingredients, unitPrice, index }) {
     dispatch(addItem(newItem));
   }
   return (
-    <div className="grid grid-cols-[0.05fr,0.82fr,0.03fr,0.1fr] items-center justify-between pt-1">
+    <div className="grid grid-cols-[0.05fr,0.72fr,0.03fr,0.2fr] items-center justify-between pt-1">
       <p className=" mr-1 text-4xl font-light">{index + 1}</p>
       <div className="flex flex-col gap-1">
         <h3 className="text-base font-semibold ">{name}</h3>

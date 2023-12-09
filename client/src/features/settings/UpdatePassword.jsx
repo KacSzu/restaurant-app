@@ -14,8 +14,9 @@ function UpdatePassword() {
       </FormRow>
       <FormRow label="Confirm new password">
         <input
-          id="email"
-          placeholder="Type your new email"
+          id="password"
+          type="password"
+          placeholder="Confirm new password"
           className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base   duration-500 placeholder:uppercase focus:outline-none  focus:ring focus:ring-neutral-400 focus:ring-offset-2"
         />
       </FormRow>

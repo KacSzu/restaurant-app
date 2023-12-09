@@ -9,11 +9,9 @@ const userSlice = createSlice({
   reducers: {
     signupUser(state, action) {
       state.user = action.payload;
-      console.log(state.user);
     },
     logoutUser(state) {
       state.user = null;
-      console.log(state.user);
     },
     loginUser(state, action) {
       state.user = action.payload;
@@ -27,3 +25,4 @@ export const { signupUser, loginUser, logoutUser } = userSlice.actions;
 export default userSlice.reducer;
 
 export const getCurrentUser = (state) => state.user.user;
+export const getActiveTime = (state) => state.user.activeTime;

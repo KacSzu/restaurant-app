@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Overview from "./pages/Overview";
 import AppLayout from "./ui/AppLayout";
 import NewOrder from "./pages/NewOrder";
 import Login from "./pages/Login";
@@ -23,8 +22,7 @@ function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           />
           <Route element={user ? <AppLayout /> : <Navigate to="/login" />}>
-            <Route index element={<Navigate replace to="/overview" />} />
-            <Route path="/overview" element={<Overview />} />
+            <Route index element={<Navigate replace to="/newOrder" />} />
             <Route path="/newOrder" element={<NewOrder />} />
             <Route path="/ready" element={<ReadyToServe />} />
             <Route path="/settings" element={<Settings />} />

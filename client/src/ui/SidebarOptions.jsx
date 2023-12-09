@@ -1,5 +1,4 @@
 import {
-  HiOutlineChartBar,
   HiOutlineClock,
   HiOutlineCog6Tooth,
   HiOutlinePencil,
@@ -8,11 +7,6 @@ import {
 import SidebarOption from "./SidebarOption";
 function SidebarOptions({ isOpen, setIsOpen }) {
   const menus = [
-    {
-      title: "Overview",
-      to: "overview",
-      icon: <HiOutlineChartBar />,
-    },
     {
       title: "New Order",
       to: "newOrder",
@@ -32,7 +26,7 @@ function SidebarOptions({ isOpen, setIsOpen }) {
   return (
     <ul
       onClick={() => setIsOpen(false)}
-      className="flex flex-col items-center gap-3 pt-16  xl:gap-6  xl:py-24   "
+      className="flex flex-col items-center gap-3 pt-24  xl:gap-6  xl:py-36   "
     >
       {menus.map(({ title, to, icon }) => (
         <SidebarOption

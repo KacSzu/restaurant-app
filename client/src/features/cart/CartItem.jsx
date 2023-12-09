@@ -1,4 +1,4 @@
-import { HiTrash } from "react-icons/hi2";
+import { HiOutlineTrash } from "react-icons/hi2";
 import ButtonIcon from "../../ui/ButtonIcon";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "./cartSlice";
@@ -9,12 +9,12 @@ function CartItem({ id, quantity, name, totalPrice }) {
     dispatch(deleteItem(id));
   }
   return (
-    <li className="flex items-center px-2  pl-6 ">
+    <li className=" mx-6 flex  justify-between py-4">
       <span>
         {quantity} x {name} - {formatCurrency(totalPrice)}
       </span>
       <ButtonIcon variation="cart" onClick={() => handleDeleteFromCart(id)}>
-        <HiTrash />
+        <HiOutlineTrash />
       </ButtonIcon>
     </li>
   );

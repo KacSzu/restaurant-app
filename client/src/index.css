@@ -10,6 +10,7 @@ body {
   color: #262626;
   background-color: #fafafa;
 }
+
 @layer components {
   .loader {
     width: 45px;
