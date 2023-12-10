@@ -2,7 +2,7 @@ function MenuBox({ title, img, category, onClick }) {
   return (
     <div
       onClick={() => onClick(category)}
-      className="relative w-52 cursor-pointer rounded-md bg-gray-600 text-center shadow-md hover:scale-105  hover:bg-gray-700 xl:w-60"
+      className="relative w-52 cursor-pointer rounded-md bg-gray-600 text-center shadow-md hover:scale-105  hover:bg-gray-700 xl:w-72"
     >
       <img
         className="h-full w-full rounded-md  opacity-50"

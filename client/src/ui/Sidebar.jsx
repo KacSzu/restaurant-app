@@ -10,7 +10,7 @@ function Sidebar() {
   return (
     <div
       className={`bg relative h-screen bg-neutral-200  pt-7  ${
-        isOpen ? "w-64" : "w-20"
+        isOpen ? "w-64 xl:w-72" : "w-20"
       }  duration-300 `}
     >
       <ButtonIcon

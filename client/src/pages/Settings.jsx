@@ -7,7 +7,7 @@ function Settings() {
   const user = useSelector(getCurrentUser);
   return (
     <div>
-      <h2 className="my-16 text-center text-2xl font-thin">
+      <h2 className="my-16 text-center text-2xl font-thin xl:my-24 xl:text-3xl">
         Hello, {user.firstName}
       </h2>
       <UpdateUserData />

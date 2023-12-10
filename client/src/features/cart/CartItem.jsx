@@ -9,7 +9,7 @@ function CartItem({ id, quantity, name, totalPrice }) {
     dispatch(deleteItem(id));
   }
   return (
-    <li className=" mx-6 flex  justify-between py-4">
+    <li className=" mx-6 flex  justify-between py-4 xl:text-lg">
       <span>
         {quantity} x {name} - {formatCurrency(totalPrice)}
       </span>

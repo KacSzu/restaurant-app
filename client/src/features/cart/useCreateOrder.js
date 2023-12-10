@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { createOrder as createOrderApi } from "../../services/apiOrder";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTableNumber } from "./cartSlice";
@@ -7,13 +7,12 @@ import { getCurrentUser } from "../authentication/userSlice";
 export function useCreateOrder() {
   const user = useSelector(getCurrentUser);
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
   const cart = useSelector(getCart);
   const tableNumber = useSelector(getTableNumber);
   const { mutate: createOrder, isPending } = useMutation({
     mutationFn: () => createOrderApi(cart, tableNumber),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      console.log({ cart, tableNumber });
       toast.success("Order successfully created");
       dispatch(clearCart());
     },

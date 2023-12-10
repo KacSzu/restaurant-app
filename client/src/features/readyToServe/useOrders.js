@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getOrdersByStatus } from "../../services/apiOrder";
+import { getOrders } from "../../services/apiOrder";
 
-export function useGetOrdersByStatus(status) {
+export function useOrders(status) {
   const { data: orders, isLoading } = useQuery({
-    queryFn: () => getOrdersByStatus(status),
+    queryFn: () => getOrders(status),
     queryKey: ["orders", status],
   });
   return { orders, isLoading };

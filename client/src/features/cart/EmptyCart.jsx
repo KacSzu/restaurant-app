@@ -1,6 +1,6 @@
 function EmptyCart() {
   return (
-    <div className="pt-6 text-center">
+    <div className="pt-6 text-center xl:text-lg ">
       <span>Cart is empty 😢</span>
     </div>
   );

@@ -8,8 +8,8 @@ function CategoryMenu() {
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
   return (
-    <div>
-      <div className="mx-16 flex justify-end gap-3 px-2 py-1 text-2xl text-neutral-800">
+    <div className="">
+      <div className="mx-16  flex justify-end gap-3 px-2 py-1 text-2xl text-neutral-800">
         &larr;
         <button
           className="text-base"

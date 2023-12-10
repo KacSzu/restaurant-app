@@ -19,14 +19,18 @@ function MenuItem({ id, name, ingredients, unitPrice, index }) {
   }
   return (
     <div className="grid grid-cols-[0.05fr,0.72fr,0.03fr,0.2fr] items-center justify-between pt-1">
-      <p className=" mr-1 text-4xl font-light">{index + 1}</p>
+      <p className=" mr-1 text-4xl font-light xl:text-5xl">{index + 1}</p>
       <div className="flex flex-col gap-1">
-        <h3 className="text-base font-semibold ">{name}</h3>
+        <h3 className="text-base font-semibold xl:text-lg ">{name}</h3>
         {ingredients && (
-          <p className="text-xs uppercase">{ingredients.join(", ")}</p>
+          <p className="text-xs uppercase xl:text-sm">
+            {ingredients.join(", ")}
+          </p>
         )}
       </div>
-      <p className="text-sm">{formatCurrency(unitPrice)}</p>
+      <p className="text-sm font-semibold xl:text-base">
+        {formatCurrency(unitPrice)}
+      </p>
       <div className="flex items-center justify-center">
         {isInCart ? (
           <UpdateCartQuantity id={id} />

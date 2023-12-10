@@ -10,8 +10,8 @@ function ButtonIcon({ children, variation, isOpen, onClick }) {
     sidebarOption: base + " text-2xl  p-2 focus:ring-neutral-300 xl:text-4xl",
     small:
       base +
-      ` text-lg p-3 hover:bg-neutral-300 focus:ring-neutral-300  duration-500 `,
-    cart: base + " text-2xl ml-2   focus:ring-neutral-300  duration-500 ",
+      ` text-lg p-3 xl:text-2xl hover:bg-neutral-300 focus:ring-neutral-300  duration-500 `,
+    cart: base + " text-2xl ml-2   focus:ring-neutral-300  duration-500  ",
   };
 
   return (

@@ -3,22 +3,19 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 
 const createToken = (_id) => {
-  return jwt.sign({ _id }, process.env.SECRET);
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "1d" });
 };
 
 exports.loginUser = catchAsyncErrors(async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
   const user = await User.login(email, password);
-  const token = createToken(user._id);
-  const firstName = user.firstName;
+  const token = createToken(user._id, {});
 
-  console.log(user);
   if (!user) next(new ErrorHandler("Could not log in"), 400);
   return res.status(200).json({
     success: true,
     message: "Successfully log in",
-    data: { email, token, firstName },
+    data: { email, token, firstName: user.firstName },
   });
 });
 

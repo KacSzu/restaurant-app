@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import { useGetOrdersByStatus } from "./useGetOrdersByStatus";
+import { useOrders } from "./useOrders";
 import { useUpdateOrderStatus } from "./useUpdateOrderStatus";
 import Loader from "../../ui/Loader";
 import AccordionItem from "./AccordionItem";
 
 function Accordion() {
   const [activeIndex, setActiveIndex] = useState(null);
-  const { orders, isLoading } = useGetOrdersByStatus("ready");
+  const { orders, isLoading } = useOrders("ready");
   const { updateOrder, isUpdating } = useUpdateOrderStatus();
   const isWorking = isUpdating || isLoading;
 
@@ -20,7 +20,7 @@ function Accordion() {
       {orders?.data?.map(({ _id, tableNumber, cart }, index) => (
         <AccordionItem
           key={_id}
-          _id={_id}
+          id={_id}
           tableNumber={tableNumber}
           cart={cart}
           index={index}

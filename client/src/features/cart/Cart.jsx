@@ -17,13 +17,13 @@ const Cart = () => {
   if (isPending) return <Loader />;
   return (
     <section className=" grid grid-rows-[0.05fr,0.75fr,0.05fr,0.15fr] divide-y divide-neutral-800 pt-8">
-      <h2 className="text-center uppercase">Your Cart</h2>
+      <h2 className="text-center uppercase xl:text-lg">Your Cart</h2>
       {emptyCart ? (
         <div>
           <EmptyCart />
         </div>
       ) : (
-        <ul className="divide-y divide-neutral-300 overflow-scroll">
+        <ul className="divide-y divide-neutral-300 overflow-y-scroll">
           {cart.map(({ id, quantity, name, totalPrice }, index) => (
             <CartItem
               id={id}
@@ -35,9 +35,9 @@ const Cart = () => {
           ))}
         </ul>
       )}
-      <div className=" flex items-center">
+      <div className=" flex items-center xl:text-lg">
         <span className="ml-4 ">
-          Total price:{" "}
+          Total price:
           <span className="font-semibold">{formatCurrency(totalPrice)}</span>
         </span>
       </div>

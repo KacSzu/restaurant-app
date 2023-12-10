@@ -3,6 +3,8 @@ import { getCart, getTableNumber, setTableNumber } from "./cartSlice";
 import Button from "../../ui/Button";
 import { useCreateOrder } from "./useCreateOrder";
 import Error from "../../ui/Error";
+import FormRow from "../../ui/FormRow";
+import Input from "../../ui/Input";
 
 function ConfirmOrder({ onCloseModal }) {
   const { createOrder, isPending } = useCreateOrder();
@@ -19,25 +21,23 @@ function ConfirmOrder({ onCloseModal }) {
   }
   return (
     <form
-      className="mx-auto mt-6 flex w-[350px] flex-col items-center  space-y-4 px-6"
+      className=" mx-auto my-8 flex w-[450px] flex-col items-center  space-y-4 px-6"
       onSubmit={handleSubmit}
       method="POST"
     >
       <div className=" flex flex-col gap-4">
-        <label className="text-center" htmlFor="tableNumber ">
-          Please add table number
-        </label>
-        <input
-          className="rounded-full  border border-neutral-500 px-2 py-1 pl-5 uppercase"
-          placeholder="#table number"
-          name="tableNumber"
-          value={tableNumber}
-          type="Number"
-          id="tableNumber"
-          onChange={(e) => {
-            dispatch(setTableNumber(Number(e.target.value)));
-          }}
-        />
+        <FormRow label="Please add table number">
+          <Input
+            placeholder="#table number"
+            name="tableNumber"
+            value={tableNumber}
+            type="Number"
+            id="tableNumber"
+            onChange={(e) => {
+              dispatch(setTableNumber(Number(e.target.value)));
+            }}
+          />
+        </FormRow>
 
         {tableNumber <= 0 && (
           <Error>Table number can not be lower than 1</Error>

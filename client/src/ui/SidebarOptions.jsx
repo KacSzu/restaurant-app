@@ -3,8 +3,8 @@ import {
   HiOutlineCog6Tooth,
   HiOutlinePencil,
 } from "react-icons/hi2";
-
 import SidebarOption from "./SidebarOption";
+
 function SidebarOptions({ isOpen, setIsOpen }) {
   const menus = [
     {
@@ -23,6 +23,7 @@ function SidebarOptions({ isOpen, setIsOpen }) {
       icon: <HiOutlineCog6Tooth />,
     },
   ];
+
   return (
     <ul
       onClick={() => setIsOpen(false)}

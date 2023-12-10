@@ -1,25 +1,17 @@
-export async function getOrders() {
+export async function getOrders(status) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     let query = "/api/v1/orders";
-
-    const res = await fetch(query, {
-      headers: { Authorization: `Bearer ${user?.token}` },
-    });
-    if (!res.ok) throw new Error("Orders can not be loaded");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error.message);
-  }
-}
-export async function getOrdersByStatus(status) {
-  const user = JSON.parse(localStorage.getItem("user") || null);
-  try {
-    const res = await fetch(`/api/v1/orders/${status}`, {
-      headers: { Authorization: `Bearer ${user?.token}` },
-    });
-
+    let res;
+    if (status) {
+      res = await fetch(`/api/v1/orders/${status}`, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      });
+    } else {
+      res = await fetch(query, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      });
+    }
     if (!res.ok) throw new Error("Orders can not be loaded");
     const data = await res.json();
     return data;
