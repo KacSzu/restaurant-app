@@ -34,8 +34,6 @@ exports.createOrder = catchAsyncErrors(async (req, res) => {
 
 exports.updateOrderStatus = catchAsyncErrors(async (req, res) => {
   const id = req.params.id;
-  console.log(req.body);
-  console.log(id);
   if (mongoose.Types.ObjectId.isValid(id)) {
     const order = await Orders.findOneAndUpdate({ _id: id }, { ...req.body });
     return res.status(200).json({

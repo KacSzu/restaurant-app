@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import AppLayout from "./ui/AppLayout";
 import NewOrder from "./pages/NewOrder";
 import Login from "./pages/Login";
 import ReadyToServe from "./pages/ReadyToServe";
@@ -9,6 +8,9 @@ import { Toaster } from "react-hot-toast";
 import Settings from "./pages/Settings";
 import { useSelector } from "react-redux";
 import { getCurrentUser } from "./features/authentication/userSlice";
+import AppLayout from "./ui/AppLayout";
+import Kitchen from "./pages/Kitchen";
+import KitchenMenu from "./pages/KitchenMenu";
 function App() {
   const user = useSelector(getCurrentUser);
   const queryClient = new QueryClient();
@@ -21,12 +23,26 @@ function App() {
             path="/login"
             element={user ? <Navigate to="/" /> : <Login />}
           />
-          <Route element={user ? <AppLayout /> : <Navigate to="/login" />}>
-            <Route index element={<Navigate replace to="/newOrder" />} />
-            <Route path="/newOrder" element={<NewOrder />} />
-            <Route path="/ready" element={<ReadyToServe />} />
-            <Route path="/settings" element={<Settings />} />
-          </Route>
+          {user?.role === "waiter" && (
+            <Route
+              element={user ? <AppLayout /> : <Navigate replace to="/login" />}
+            >
+              <Route index element={<Navigate replace to="/newOrder" />} />
+              <Route path="/newOrder" element={<NewOrder />} />
+              <Route path="/ready" element={<ReadyToServe />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+          )}
+          {user?.role === "kitchen" && (
+            <Route
+              element={user ? <AppLayout /> : <Navigate replace to="/login" />}
+            >
+              <Route index element={<Navigate replace to="/kitchen" />} />
+              <Route path="/kitchen" element={<Kitchen />} />
+              <Route path="/menu" element={<KitchenMenu />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+          )}
         </Routes>
       </BrowserRouter>
       <Toaster
@@ -37,7 +53,7 @@ function App() {
         }}
         toastOptions={{
           success: {
-            duration: 3000,
+            duration: 2000,
           },
           error: {
             duration: 5000,

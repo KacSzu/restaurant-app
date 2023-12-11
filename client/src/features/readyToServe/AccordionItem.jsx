@@ -14,7 +14,6 @@ function AccordionItem({
 }) {
   const newStatus = "done";
   function handleClick() {
-    console.log({ status: newStatus });
     updateOrder({ id, newStatus });
   }
   return (

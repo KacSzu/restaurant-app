@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export function useUpdateOrderStatus() {
   const queryClient = useQueryClient();
   const { mutate: updateOrder, isPending: isUpdating } = useMutation({
-    mutationFn: ({ _id, newStatus }) => updateOrderStatus({ _id, newStatus }),
+    mutationFn: ({ id, newStatus }) => updateOrderStatus({ id, newStatus }),
     onSuccess: (data) => {
       console.log(data);
       queryClient.invalidateQueries({ queryKey: ["orders"] });

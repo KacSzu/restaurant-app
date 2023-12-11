@@ -9,19 +9,19 @@ const createToken = (_id) => {
 exports.loginUser = catchAsyncErrors(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.login(email, password);
-  const token = createToken(user._id, {});
+  const token = createToken(user._id);
 
   if (!user) next(new ErrorHandler("Could not log in"), 400);
   return res.status(200).json({
     success: true,
     message: "Successfully log in",
-    data: { email, token, firstName: user.firstName },
+    data: { email, token, firstName: user.firstName, role: user.role },
   });
 });
 
 exports.signupUser = catchAsyncErrors(async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.signup(email, password);
+  const { email, password, role, firstName } = req.body;
+  const user = await User.signup(email, password, role, firstName);
 
   const token = createToken(user._id);
 
@@ -29,6 +29,6 @@ exports.signupUser = catchAsyncErrors(async (req, res) => {
   return res.status(200).json({
     success: true,
     message: "User created successfully",
-    data: { email, token },
+    data: { email, token, firstName: user.firstName, role: user.role },
   });
 });

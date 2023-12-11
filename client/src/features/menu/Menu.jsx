@@ -7,7 +7,7 @@ function Menu() {
   const category = searchParams.get("category") || null;
 
   return (
-    <section className="my-auto">
+    <section className=" my-auto ">
       {category ? <CategoryMenu /> : <MenuBoxes />}
     </section>
   );

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
-function AppLayout() {
+function KitchenLayout() {
   return (
     <div className="flex ">
       <Sidebar />
@@ -12,4 +12,4 @@ function AppLayout() {
   );
 }
 
-export default AppLayout;
+export default KitchenLayout;

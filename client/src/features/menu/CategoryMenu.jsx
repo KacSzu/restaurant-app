@@ -8,7 +8,7 @@ function CategoryMenu() {
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
   return (
-    <div className="">
+    <div>
       <div className="mx-16  flex justify-end gap-3 px-2 py-1 text-2xl text-neutral-800">
         &larr;
         <button
@@ -20,16 +20,19 @@ function CategoryMenu() {
         </button>
       </div>
       <div className="  mx-16 flex flex-col gap-3 divide-y divide-neutral-800 rounded-lg bg-neutral-200 px-4 py-3 ">
-        {menu?.data.map(({ _id, name, unitPrice, ingredients }, index) => (
-          <MenuItem
-            id={_id}
-            index={index}
-            key={name}
-            name={name}
-            unitPrice={unitPrice}
-            ingredients={ingredients}
-          />
-        ))}
+        {menu?.data?.map(
+          ({ _id, name, unitPrice, ingredients, soldOut }, index) => (
+            <MenuItem
+              soldOut={soldOut}
+              id={_id}
+              index={index}
+              key={name}
+              name={name}
+              unitPrice={unitPrice}
+              ingredients={ingredients}
+            />
+          ),
+        )}
       </div>
     </div>
   );

@@ -40,11 +40,11 @@ export async function createOrder(cart, tableNumber) {
   }
 }
 
-export async function updateOrderStatus({ _id, newStatus }) {
-  console.log(_id, newStatus);
+export async function updateOrderStatus({ id, newStatus }) {
+  console.log(id, newStatus);
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`/api/v1/orders/${_id}`, {
+    const res = await fetch(`/api/v1/orders/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ status: newStatus }),
       headers: {

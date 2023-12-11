@@ -4,13 +4,14 @@ import FormRow from "../../ui/FormRow";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Input from "../../ui/Input";
+import Error from "../../ui/Error";
 function LoginForm() {
-  const { login, isPending } = useLogin();
-  const [email, setEmail] = useState("ab@ab2c.pl");
-  const [password, setPassword] = useState("Abecadło123!!");
+  const { login, isPending, error } = useLogin();
+  const [email, setEmail] = useState("kitchen@restaurant.com");
+  const [password, setPassword] = useState("Kitchen123!");
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) return;
+
     login(
       { email, password },
       {
@@ -44,6 +45,7 @@ function LoginForm() {
           type="password"
         />
       </FormRow>
+      <div>{error ? <Error>{error}</Error> : null}</div>
       <div className="mt-3">
         <Button variation="primary">
           {!isPending ? "Log in" : <SpinnerMini />}
