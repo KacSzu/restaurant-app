@@ -7,8 +7,8 @@ import Input from "../../ui/Input";
 import Error from "../../ui/Error";
 function LoginForm() {
   const { login, isPending, error } = useLogin();
-  const [email, setEmail] = useState("kitchen@restaurant.com");
-  const [password, setPassword] = useState("Kitchen123!");
+  const [email, setEmail] = useState("admin@restaurant.com");
+  const [password, setPassword] = useState("Admin123!");
   function handleSubmit(e) {
     e.preventDefault();
 

@@ -56,11 +56,6 @@ function SidebarOptions({ isOpen, setIsOpen }) {
                 icon: <HiOutlineChartBar />,
               },
               {
-                title: "Edit menu",
-                to: "menu",
-                icon: <LuClipboardEdit />,
-              },
-              {
                 title: "Settings",
                 to: "settings",
                 icon: <HiOutlineCog6Tooth />,

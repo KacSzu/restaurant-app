@@ -13,6 +13,8 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
   function handleAddToCart() {
+    if (soldOut) return;
+    console.log(soldOut);
     const newItem = {
       id,
       name,
@@ -47,14 +49,19 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
           isInCart ? (
             <UpdateCartQuantity id={id} />
           ) : (
-            <Button onClick={handleAddToCart} variation="small">
-              Add
+            <Button
+              onClick={handleAddToCart}
+              disabled={soldOut}
+              variation={soldOut ? "soldout" : "small"}
+            >
+              {soldOut ? "Sold" : "Add"}
             </Button>
           )
         ) : null}
         {user?.role === "kitchen" && (
           <Button
             onClick={handleSetSoldOut}
+            disabled={isPending}
             variation={soldOut ? "primary" : "danger"}
           >
             {soldOut ? "Active" : "Sold out"}
