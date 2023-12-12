@@ -1,10 +1,12 @@
-import StatsBoxes from "../features/dashboard/StatsBoxes";
+import DashboardFilter from "../features/dashboard/DashboardFilter";
+import DashboardLayout from "../features/dashboard/DashboardLayout";
 
 function Dashboard() {
   return (
-    <div>
-      <StatsBoxes />
-    </div>
+    <section>
+      <DashboardFilter />
+      <DashboardLayout />
+    </section>
   );
 }
 

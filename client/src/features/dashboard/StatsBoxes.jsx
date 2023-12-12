@@ -1,13 +1,21 @@
 import StatsBox from "./StatsBox";
 import { HiOutlineBanknotes, HiOutlineChartBarSquare } from "react-icons/hi2";
-function StatsBoxes() {
+function StatsBoxes({ orders }) {
+  console.log(orders);
+  const totalOrders = orders?.data?.length;
+  const totalEarned = orders?.data?.reduce((sum, order) => {
+    return (
+      sum + order.cart.reduce((cartSum, item) => cartSum + item.totalPrice, 0)
+    );
+  }, 0);
+
   const statsOptions = [
     {
       label: "Total orders",
-      value: "ab2c5235123521",
+      value: totalOrders,
       icon: <HiOutlineChartBarSquare />,
     },
-    { label: "Total earned", value: "abc", icon: <HiOutlineBanknotes /> },
+    { label: "Total earned", value: totalEarned, icon: <HiOutlineBanknotes /> },
   ];
   return (
     <div className="mt-12 grid grid-cols-2 justify-around justify-items-center gap-8 ">

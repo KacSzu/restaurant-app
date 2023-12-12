@@ -3,8 +3,10 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Orders = require("../models/orderModel");
 const APIFilters = require("../utils/apiFilters");
 const mongoose = require("mongoose");
+
 exports.getOrders = catchAsyncErrors(async (req, res) => {
   const orders = await Orders.find();
+
   if (!orders) next(new ErrorHandler("Orders not found"), 404);
   return res
     .status(200)
@@ -12,10 +14,20 @@ exports.getOrders = catchAsyncErrors(async (req, res) => {
 });
 
 exports.getOrdersByStatus = catchAsyncErrors(async (req, res) => {
-  const apiFilters = new APIFilters(Orders.find(), req.params).filter();
-
-  const orders = await apiFilters.query;
-
+  const { last } = req.query;
+  let orders;
+  let apiFilters;
+  if (last) {
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - parseInt(last));
+    orders = await Orders.find({
+      created_at: { $gte: startDate },
+      status: req.params.status,
+    });
+  } else {
+    apiFilters = new APIFilters(Orders.find(), req.params).filter();
+    orders = await apiFilters.query;
+  }
   if (!orders) next(new ErrorHandler("Orders not found"), 404);
   return res
     .status(200)

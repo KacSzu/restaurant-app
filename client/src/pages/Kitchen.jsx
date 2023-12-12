@@ -2,9 +2,9 @@ import DragAndDrop from "../features/dragAndDrop/DragAndDrop";
 
 function Kitchen() {
   return (
-    <div>
+    <section>
       <DragAndDrop />
-    </div>
+    </section>
   );
 }
 
