@@ -1,5 +1,10 @@
+import { getCurrentUser } from "../authentication/userSlice";
+import { useSelector } from "react-redux";
+import Button from "../../ui/Button";
 import { useSearchParams } from "react-router-dom";
 import MenuBox from "./MenuBox";
+import Modal from "../../ui/Modal";
+import AddMenuItemForm from "./addMenuItemForm";
 
 const menuOptions = [
   {
@@ -23,7 +28,9 @@ const menuOptions = [
     category: "wines",
   },
 ];
+
 function MenuBoxes() {
+  const user = useSelector(getCurrentUser);
   const [searchParams, setSerachParams] = useSearchParams();
   function handleClick(value) {
     searchParams.set("category", value);
@@ -41,6 +48,18 @@ function MenuBoxes() {
           key={title}
         />
       ))}
+      {user?.role === "admin" && (
+        <div className="col-span-2 flex justify-center">
+          <Modal>
+            <Modal.Open opens="addMenuItemForm">
+              <Button variation="primary">Add new item</Button>
+            </Modal.Open>
+            <Modal.Window name="addMenuItemForm">
+              <AddMenuItemForm />
+            </Modal.Window>
+          </Modal>
+        </div>
+      )}
     </div>
   );
 }

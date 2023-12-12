@@ -26,6 +26,7 @@ const menuSchema = new Schema({
   soldOut: {
     type: Boolean,
     required: true,
+    default: false,
   },
 });
 module.exports = mongoose.model("Menu", menuSchema);

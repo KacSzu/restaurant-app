@@ -26,3 +26,32 @@ exports.updateMenuSoldOut = catchAsyncErrors(async (req, res) => {
     return next(new ErrorHandler("Order not found", 404));
   }
 });
+exports.createMenuItem = catchAsyncErrors(async (req, res) => {
+  const { category, name, unitPrice, ingredients } = req.body;
+  console.log(req.body);
+  const menuItem = await Menu.create({
+    category,
+    name,
+    unitPrice,
+    ingredients,
+  });
+  return res.status(200).json({
+    success: true,
+    message: "Menu item created sucessfully",
+    data: menuItem,
+  });
+});
+exports.deleteMenuItem = catchAsyncErrors(async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    const menuItem = await Menu.findOneAndDelete({ _id: id });
+    return res.status(200).json({
+      success: true,
+      message: "Menu item deleted sucessfully",
+      data: menuItem,
+    });
+  } else {
+    return next(new ErrorHandler("Order not found", 404));
+  }
+});

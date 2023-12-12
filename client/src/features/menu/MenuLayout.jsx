@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import MenuBoxes from "./MenuBoxes";
 import CategoryMenu from "./CategoryMenu";
 
-function Menu() {
+function MenuLayout() {
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category") || null;
 
@@ -13,4 +13,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default MenuLayout;

@@ -1,11 +1,11 @@
-import Menu from "../features/menu/Menu";
+import MenuLayout from "../features/menu/MenuLayout";
 
-function KitchenMenu() {
+function Menu() {
   return (
     <div className="mx-auto grid h-screen w-[85%]  divide-x divide-neutral-800  ">
-      <Menu />
+      <MenuLayout />
     </div>
   );
 }
 
-export default KitchenMenu;
+export default Menu;

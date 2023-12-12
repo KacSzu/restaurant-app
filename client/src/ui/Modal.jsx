@@ -2,6 +2,7 @@ import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 import { getCart } from "../features/cart/cartSlice";
+import { getCurrentUser } from "../features/authentication/userSlice";
 const ModalContext = createContext();
 
 function Modal({ children }) {
@@ -16,14 +17,21 @@ function Modal({ children }) {
 }
 
 function Open({ children, opens: opensWindowName }) {
+  const user = useSelector(getCurrentUser);
   const cart = useSelector(getCart);
   const emptyCart = !cart.length;
   const { open } = useContext(ModalContext);
-
+  console.log(cart);
+  console.log(emptyCart);
   return cloneElement(children, {
     onClick: () => {
-      if (emptyCart) return;
-      open(opensWindowName);
+      {
+        user?.role === "admin"
+          ? open(opensWindowName)
+          : emptyCart
+            ? null
+            : open(opensWindowName);
+      }
     },
   });
 }

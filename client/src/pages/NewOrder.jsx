@@ -1,10 +1,10 @@
 import Cart from "../features/cart/Cart";
-import Menu from "../features/menu/Menu";
+import MenuLayout from "../features/menu/MenuLayout";
 
 function NewOrder() {
   return (
     <div className="grid h-screen grid-cols-[2fr,1fr] divide-x divide-neutral-800  ">
-      <Menu />
+      <MenuLayout />
       <Cart />
     </div>
   );

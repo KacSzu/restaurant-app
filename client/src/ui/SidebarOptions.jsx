@@ -1,11 +1,12 @@
 import {
-  HiOutlineChartBar,
   HiOutlineClock,
   HiOutlineCog6Tooth,
+  HiOutlineDocumentMagnifyingGlass,
   HiOutlinePencil,
+  HiOutlinePresentationChartLine,
   HiOutlineUserPlus,
 } from "react-icons/hi2";
-import { LuChefHat, LuClipboardEdit } from "react-icons/lu";
+import { SiCodechef } from "react-icons/si";
 import SidebarOption from "./SidebarOption";
 import { useSelector } from "react-redux";
 import { getCurrentUser } from "../features/authentication/userSlice";
@@ -36,12 +37,12 @@ function SidebarOptions({ isOpen, setIsOpen }) {
             {
               title: "Kitchen",
               to: "kitchen",
-              icon: <LuChefHat />,
+              icon: <SiCodechef />,
             },
             {
               title: "Edit menu",
               to: "menu",
-              icon: <LuClipboardEdit />,
+              icon: <HiOutlineDocumentMagnifyingGlass />,
             },
             {
               title: "Settings",
@@ -54,7 +55,12 @@ function SidebarOptions({ isOpen, setIsOpen }) {
               {
                 title: "Dashboard",
                 to: "dashboard",
-                icon: <HiOutlineChartBar />,
+                icon: <HiOutlinePresentationChartLine />,
+              },
+              {
+                title: "Edit menu",
+                to: "menu",
+                icon: <HiOutlineDocumentMagnifyingGlass />,
               },
               {
                 title: "Add new user",

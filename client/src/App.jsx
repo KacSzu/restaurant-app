@@ -10,9 +10,9 @@ import { useSelector } from "react-redux";
 import { getCurrentUser } from "./features/authentication/userSlice";
 import AppLayout from "./ui/AppLayout";
 import Kitchen from "./pages/Kitchen";
-import KitchenMenu from "./pages/KitchenMenu";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Signup";
+import Menu from "./pages/Menu";
 function App() {
   const user = useSelector(getCurrentUser);
   const queryClient = new QueryClient();
@@ -42,7 +42,7 @@ function App() {
             >
               <Route index element={<Navigate replace to="/kitchen" />} />
               <Route path="/kitchen" element={<Kitchen />} />
-              <Route path="/menu" element={<KitchenMenu />} />
+              <Route path="/menu" element={<Menu />} />
               <Route path="/settings" element={<Settings />} />
             </Route>
           )}
@@ -53,6 +53,7 @@ function App() {
               <Route index element={<Navigate replace to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/menu" element={<Menu />} />
               <Route path="/settings" element={<Settings />} />
             </Route>
           )}

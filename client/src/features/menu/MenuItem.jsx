@@ -6,12 +6,17 @@ import UpdateCartQuantity from "../cart/updateCartQuantity";
 import { getCurrentUser } from "../authentication/userSlice";
 import { useUpdateMenuSoldOut } from "./useUpdateMenuSoldOut";
 import Loader from "../../ui/Loader";
+import { useDeluteMenuItem } from "./useDeleteMenuItem";
 function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   const user = useSelector(getCurrentUser);
+  const { deleteMenuItem, isDeleting } = useDeluteMenuItem();
   const { updateMenuItem, isPending } = useUpdateMenuSoldOut();
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
+
+  const isWorking = isDeleting || isPending;
+
   function handleAddToCart() {
     if (soldOut) return;
     console.log(soldOut);
@@ -26,10 +31,12 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   }
   function handleSetSoldOut() {
     const newSoldOut = !soldOut;
-    console.log(newSoldOut);
     updateMenuItem({ id, newSoldOut });
   }
-  if (isPending) return <Loader />;
+  function handleDeleteItem(id) {
+    deleteMenuItem(id);
+  }
+  if (isWorking) return <Loader />;
   return (
     <div className="grid grid-cols-[0.05fr,0.72fr,0.03fr,0.2fr] items-center justify-between pt-1">
       <p className=" mr-1 text-4xl font-light xl:text-5xl">{index + 1}</p>
@@ -61,10 +68,19 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
         {user?.role === "kitchen" && (
           <Button
             onClick={handleSetSoldOut}
-            disabled={isPending}
+            disabled={isWorking}
             variation={soldOut ? "primary" : "danger"}
           >
             {soldOut ? "Active" : "Sold out"}
+          </Button>
+        )}
+        {user?.role === "admin" && (
+          <Button
+            onClick={() => handleDeleteItem(id)}
+            disabled={isPending}
+            variation={"danger"}
+          >
+            Delete
           </Button>
         )}
       </div>
