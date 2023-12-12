@@ -24,7 +24,7 @@ function Button({ children, to, variation, onClick, disabled, active }) {
       base +
       `  text-xs px-3 py-2  xl:px-4 xl:text-base ${
         active
-          ? "bg-green-200 focus:ring-green-400 hover:bg-green-400 border-green-700"
+          ? "bg-emerald-200 focus:ring-emerald-400 hover:bg-emerald-400 border-emerald-700"
           : "bg-neutral-200 focus:ring-neutral-400 hover:bg-neutral-400 border-neutral-700"
       }   `,
   };

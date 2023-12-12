@@ -2,9 +2,9 @@ import Accordion from "../features/readyToServe/Accordion";
 
 function ReadyToServe() {
   return (
-    <div>
+    <section className="h-screen overflow-y-scroll">
       <Accordion />
-    </div>
+    </section>
   );
 }
 

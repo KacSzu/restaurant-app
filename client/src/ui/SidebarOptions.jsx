@@ -3,6 +3,7 @@ import {
   HiOutlineClock,
   HiOutlineCog6Tooth,
   HiOutlinePencil,
+  HiOutlineUserPlus,
 } from "react-icons/hi2";
 import { LuChefHat, LuClipboardEdit } from "react-icons/lu";
 import SidebarOption from "./SidebarOption";
@@ -54,6 +55,11 @@ function SidebarOptions({ isOpen, setIsOpen }) {
                 title: "Dashboard",
                 to: "dashboard",
                 icon: <HiOutlineChartBar />,
+              },
+              {
+                title: "Add new user",
+                to: "signup",
+                icon: <HiOutlineUserPlus />,
               },
               {
                 title: "Settings",

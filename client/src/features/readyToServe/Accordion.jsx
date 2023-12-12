@@ -16,7 +16,7 @@ function Accordion() {
   };
   if (isWorking) return <Loader />;
   return (
-    <div className="mx-auto mt-20 flex w-[600px] flex-col justify-center gap-4  text-base  uppercase ">
+    <div className="mx-auto mt-20 flex w-[600px] flex-col justify-center gap-4   text-base  uppercase ">
       {orders?.data?.map(({ _id, tableNumber, cart }, index) => (
         <AccordionItem
           key={_id}

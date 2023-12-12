@@ -6,13 +6,13 @@ import { getCurrentUser } from "../features/authentication/userSlice";
 function Settings() {
   const user = useSelector(getCurrentUser);
   return (
-    <div>
+    <section>
       <h2 className="my-16 text-center text-2xl font-thin xl:my-24 xl:text-3xl">
         Hello, {user.firstName}
       </h2>
       <UpdateUserData />
       <Logout />
-    </div>
+    </section>
   );
 }
 

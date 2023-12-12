@@ -9,7 +9,7 @@ function Filter({ filterField, options }) {
     setSearchParams(searchParams);
   }
   return (
-    <div className="mt-12 flex justify-center gap-3">
+    <div className="flex justify-center gap-3 ">
       {options?.map(({ value, label }) => (
         <Button
           active={currentFilter === value ? true : undefined}
