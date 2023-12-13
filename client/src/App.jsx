@@ -26,37 +26,35 @@ function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           />
 
-          {user?.role === "waiter" && (
-            <Route
-              element={user ? <AppLayout /> : <Navigate replace to="/login" />}
-            >
-              <Route index element={<Navigate replace to="/newOrder" />} />
-              <Route path="/newOrder" element={<NewOrder />} />
-              <Route path="/ready" element={<ReadyToServe />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-          )}
-          {user?.role === "kitchen" && (
-            <Route
-              element={user ? <AppLayout /> : <Navigate replace to="/login" />}
-            >
-              <Route index element={<Navigate replace to="/kitchen" />} />
-              <Route path="/kitchen" element={<Kitchen />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-          )}
-          {user?.role === "admin" && (
-            <Route
-              element={user ? <AppLayout /> : <Navigate replace to="/login" />}
-            >
-              <Route index element={<Navigate replace to="/dashboard" />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-          )}
+          <Route
+            element={user ? <AppLayout /> : <Navigate replace to="/login" />}
+          >
+            {user?.role === "waiter" && (
+              <>
+                <Route index element={<Navigate replace to="/newOrder" />} />
+                <Route path="/newOrder" element={<NewOrder />} />
+                <Route path="/ready" element={<ReadyToServe />} />
+                <Route path="/settings" element={<Settings />} />
+              </>
+            )}
+            {user?.role === "kitchen" && (
+              <>
+                <Route index element={<Navigate replace to="/kitchen" />} />
+                <Route path="/kitchen" element={<Kitchen />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/settings" element={<Settings />} />
+              </>
+            )}
+            {user?.role === "admin" && (
+              <>
+                <Route index element={<Navigate replace to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/settings" element={<Settings />} />
+              </>
+            )}
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster

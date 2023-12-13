@@ -10,12 +10,17 @@ function AddMenuItemForm({ onCloseModal }) {
   const { errors } = formState;
   function onSubmit(data) {
     const newItem = {
-      category: data?.category?.toLowerCase(),
+      category: data?.category?.toLowerCase().replace(/\s/g, ""),
       name: data?.name,
       unitPrice: data?.unitPrice,
       ingredients: data?.ingredients?.split(/\s*,\s*/),
     };
-    createMenuItem(newItem);
+    createMenuItem(newItem, {
+      onSettled: () => {
+        reset();
+        onCloseModal?.();
+      },
+    });
   }
   if (isPending) return <Loader />;
   return (
@@ -49,7 +54,7 @@ function AddMenuItemForm({ onCloseModal }) {
         </FormRow>
         <FormRow error={errors?.unitPrice?.message} label="Price">
           <input
-            placeholder="Type item price"
+            placeholder="Type unit price"
             type="number"
             className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             id="unitPrice"
@@ -62,7 +67,7 @@ function AddMenuItemForm({ onCloseModal }) {
             className="h-[125px] w-[300px] rounded-lg border border-neutral-800 px-2 py-1 text-base duration-500 placeholder:uppercase  focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
             id="name"
-            {...register("ingredients", { required: "This field is required" })}
+            {...register("ingredients")}
           />
         </FormRow>
       </div>

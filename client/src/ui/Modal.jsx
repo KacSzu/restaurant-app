@@ -21,8 +21,6 @@ function Open({ children, opens: opensWindowName }) {
   const cart = useSelector(getCart);
   const emptyCart = !cart.length;
   const { open } = useContext(ModalContext);
-  console.log(cart);
-  console.log(emptyCart);
   return cloneElement(children, {
     onClick: () => {
       {

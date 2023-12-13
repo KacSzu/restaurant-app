@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 export function useCreateMenuItem() {
   const { mutate: createMenuItem, isPending } = useMutation({
     mutationFn: (newItem) => createMenuItemApi(newItem),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
       toast.success("New item created successfully");
     },
     onError: () => {

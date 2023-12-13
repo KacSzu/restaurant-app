@@ -19,9 +19,9 @@ export function useLogin() {
         return;
       }
 
-      localStorage.setItem("user", JSON.stringify(user?.data));
-      dispatch(loginUser(user?.data));
       queryClient.setQueryData(["user"], user?.data);
+      dispatch(loginUser(user?.data));
+      localStorage.setItem("user", JSON.stringify(user?.data));
       toast.success("Successfully logged in");
       navigate("/", { replace: true });
     },

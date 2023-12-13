@@ -38,7 +38,7 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   }
   if (isWorking) return <Loader />;
   return (
-    <div className="grid grid-cols-[0.05fr,0.72fr,0.03fr,0.2fr] items-center justify-between pt-1">
+    <div className="grid grid-cols-[0.04fr,0.65fr,0.02fr,0.29fr] items-center justify-between pt-1 xl:grid-cols-[0.05fr,0.70fr,0.05fr,0.20fr]">
       <p className=" mr-1 text-4xl font-light xl:text-5xl">{index + 1}</p>
       <div className="flex flex-col gap-1">
         <h3 className="text-base font-semibold xl:text-lg ">{name}</h3>

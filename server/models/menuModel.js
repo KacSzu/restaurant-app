@@ -5,7 +5,7 @@ const menuSchema = new Schema({
     type: String,
     required: [true, "Please add category"],
     enum: {
-      values: ["pizza", "pasta", "wines", "alcoholfree "],
+      values: ["pizza", "pasta", "wine", "alcoholfree"],
       message: " Please select correct option for category",
     },
     trim: true,
@@ -21,7 +21,6 @@ const menuSchema = new Schema({
   },
   ingredients: {
     type: [String],
-    required: [true, "Please add ingredients"],
   },
   soldOut: {
     type: Boolean,

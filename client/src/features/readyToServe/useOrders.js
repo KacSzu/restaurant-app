@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 export function useOrders(status) {
   const [searchParams] = useSearchParams();
 
-  const lastDays = searchParams.get("last") || 7;
+  const lastDays = searchParams.get("last") || 1;
   const filter = `?last=${lastDays}`;
   const { data: orders, isLoading } = useQuery({
     queryFn: () => getOrders(status, filter),

@@ -31,3 +31,25 @@ export async function signup({ email, password, firstName, role }) {
     console.error(error.message);
   }
 }
+
+export async function updateUserPassword({ password, confirmPassword }) {
+  console.log({ password, confirmPassword });
+  const user = JSON.parse(localStorage.getItem("user") || null);
+  try {
+    const res = await fetch("/api/v1/user/password/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+      body: JSON.stringify({ password, confirmPassword }),
+    });
+    if (!res.ok) {
+      throw new Error("Can not change user password");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error.message);
+  }
+}

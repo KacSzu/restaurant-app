@@ -66,5 +66,26 @@ userSchema.statics.login = async function (email, password) {
   }
   return user;
 };
+userSchema.statics.setPassword = async function (
+  email,
+  password,
+  confirmPassword
+) {
+  if (password !== confirmPassword) {
+    throw Error("Passwords do not match");
+  }
 
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+  const user = await this.findOneAndUpdate(
+    { email },
+    {
+      password: hash,
+    }
+  );
+  if (!user) {
+    throw Error("Could not found user");
+  }
+  return user;
+};
 module.exports = mongoose.model("User", userSchema);

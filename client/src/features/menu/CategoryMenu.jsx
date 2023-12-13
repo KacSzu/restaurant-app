@@ -19,7 +19,7 @@ function CategoryMenu() {
           Go back
         </button>
       </div>
-      <div className="  mx-16 flex flex-col gap-3 divide-y divide-neutral-800 rounded-lg bg-neutral-200 px-4 py-3 ">
+      <div className="  mx-12 flex flex-col gap-3 divide-y divide-neutral-800 rounded-lg bg-neutral-200 px-4 py-3 ">
         {menu?.data?.map(
           ({ _id, name, unitPrice, ingredients, soldOut }, index) => (
             <MenuItem

@@ -32,3 +32,21 @@ exports.signupUser = catchAsyncErrors(async (req, res) => {
     data: { email, token, firstName: user.firstName, role: user.role },
   });
 });
+
+exports.updateUserPassword = catchAsyncErrors(async (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
+  const { email, firstName, role } = req.user;
+  const { password, confirmPassword } = req.body;
+
+  const user = User.setPassword(email, password, confirmPassword);
+
+  if (!user) next(new ErrorHandler("User not found"), 404);
+  const token = createToken(user._id);
+
+  return res.status(200).json({
+    success: true,
+    message: "Password changed successfully",
+    data: { email, token, firstName, role },
+  });
+});
