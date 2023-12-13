@@ -21,6 +21,7 @@ exports.loginUser = catchAsyncErrors(async (req, res) => {
 
 exports.signupUser = catchAsyncErrors(async (req, res) => {
   const { email, password, role, firstName } = req.body;
+  console.log(req.body);
   const user = await User.signup(email, password, role, firstName);
 
   const token = createToken(user._id);
@@ -34,8 +35,6 @@ exports.signupUser = catchAsyncErrors(async (req, res) => {
 });
 
 exports.updateUserPassword = catchAsyncErrors(async (req, res) => {
-  console.log(req.body);
-  console.log(req.user);
   const { email, firstName, role } = req.user;
   const { password, confirmPassword } = req.body;
 

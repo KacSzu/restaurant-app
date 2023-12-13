@@ -3,7 +3,7 @@ import Button from "./Button";
 
 function Filter({ filterField, options }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentFilter = searchParams.get(filterField) || options.at(0).value;
+  const currentFilter = searchParams.get(filterField) || options.at(1).value;
   function handleClick(value) {
     searchParams.set(filterField, value);
     setSearchParams(searchParams);
@@ -12,7 +12,7 @@ function Filter({ filterField, options }) {
     <div className="flex justify-center gap-3 ">
       {options?.map(({ value, label }) => (
         <Button
-          active={currentFilter === value ? true : undefined}
+          active={currentFilter === value ? "true" : undefined}
           variation="filter"
           key={value}
           onClick={() => handleClick(value)}

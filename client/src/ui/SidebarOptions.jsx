@@ -6,7 +6,7 @@ import {
   HiOutlinePresentationChartLine,
   HiOutlineUserPlus,
 } from "react-icons/hi2";
-import { SiCodechef } from "react-icons/si";
+import { LuChefHat } from "react-icons/lu";
 import SidebarOption from "./SidebarOption";
 import { useSelector } from "react-redux";
 import { getCurrentUser } from "../features/authentication/userSlice";
@@ -37,7 +37,7 @@ function SidebarOptions({ isOpen, setIsOpen }) {
             {
               title: "Kitchen",
               to: "kitchen",
-              icon: <SiCodechef />,
+              icon: <LuChefHat />,
             },
             {
               title: "Edit menu",

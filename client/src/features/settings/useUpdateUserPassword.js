@@ -6,8 +6,8 @@ export function useUpdateUserPassword() {
   const { mutate: updateUserPassword, isPending: isUpdating } = useMutation({
     mutationFn: ({ password, confirmPassword }) =>
       updateUserPasswordApi({ password, confirmPassword }),
-    onSuccess: (user) => {
-      queryClient.invalidateQueries({ queryKey: ["user", user?.data] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
       toast.success("Password changed successfully");
     },
     onError: () => {

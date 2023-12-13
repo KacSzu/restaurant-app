@@ -19,7 +19,6 @@ export function useLogin() {
         return;
       }
 
-      queryClient.setQueryData(["user"], user?.data);
       dispatch(loginUser(user?.data));
       localStorage.setItem("user", JSON.stringify(user?.data));
       toast.success("Successfully logged in");

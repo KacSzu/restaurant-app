@@ -6,9 +6,10 @@ export function useUpdateOrderStatus() {
   const queryClient = useQueryClient();
   const { mutate: updateOrder, isPending: isUpdating } = useMutation({
     mutationFn: ({ id, newStatus }) => updateOrderStatus({ id, newStatus }),
-    onSuccess: (data) => {
-      console.log(data);
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["orders"],
+      });
       toast.success("Order successfully served");
     },
     onError: () => {
