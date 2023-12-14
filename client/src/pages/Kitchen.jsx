@@ -1,4 +1,4 @@
-import DragAndDrop from "../features/dragAndDrop/DragAndDrop";
+import DragAndDrop from "../components/dragAndDrop/DragAndDrop";
 
 function Kitchen() {
   return (

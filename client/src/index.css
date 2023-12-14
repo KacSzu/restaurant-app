@@ -10,7 +10,9 @@ body {
   color: #262626;
   background-color: #fafafa;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 @layer components {
   .loader {
     width: 45px;

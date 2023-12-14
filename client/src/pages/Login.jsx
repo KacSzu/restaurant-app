@@ -1,5 +1,5 @@
-import Logo from "../ui/Logo";
-import LoginForm from "../features/authentication/LoginForm";
+import Logo from "../components/ui/Logo";
+import LoginForm from "../components/authentication/LoginForm";
 
 function Login() {
   return (

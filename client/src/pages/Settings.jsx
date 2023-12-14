@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Logout from "../features/settings/Logout";
-import UpdateUserData from "../features/settings/UpdateUserData";
-import { getCurrentUser } from "../features/authentication/userSlice";
+import Logout from "../components/settings/Logout";
+import UpdateUserData from "../components/settings/UpdateUserData";
+import { getCurrentUser } from "../components/authentication/userSlice";
 
 function Settings() {
   const user = useSelector(getCurrentUser);

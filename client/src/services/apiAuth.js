@@ -16,7 +16,6 @@ export async function login({ email, password }) {
 }
 
 export async function signup({ email, password, firstName, role }) {
-  console.log({ email, password, firstName, role });
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch("/api/v1/user/signup", {
@@ -38,7 +37,6 @@ export async function signup({ email, password, firstName, role }) {
 }
 
 export async function updateUserPassword({ password, confirmPassword }) {
-  console.log({ password, confirmPassword });
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch("/api/v1/user/password/update", {

@@ -16,7 +16,6 @@ export async function getMenu(filter) {
   }
 }
 export async function createMenuItem(newItem) {
-  console.log(newItem);
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(`/api/v1/menu/new`, {
@@ -36,7 +35,6 @@ export async function createMenuItem(newItem) {
 }
 
 export async function deleteMenuItem(id) {
-  console.log(id);
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(`/api/v1/menu/${id}`, {

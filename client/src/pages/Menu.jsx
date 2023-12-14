@@ -1,4 +1,4 @@
-import MenuLayout from "../features/menu/MenuLayout";
+import MenuLayout from "../components/menu/MenuLayout";
 
 function Menu() {
   return (

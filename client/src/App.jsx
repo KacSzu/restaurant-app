@@ -1,21 +1,20 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import NewOrder from "./pages/NewOrder";
-import Login from "./pages/Login";
-import ReadyToServe from "./pages/ReadyToServe";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-import Settings from "./pages/Settings";
 import { useSelector } from "react-redux";
-import { getCurrentUser } from "./features/authentication/userSlice";
-import AppLayout from "./ui/AppLayout";
-import Kitchen from "./pages/Kitchen";
-import Dashboard from "./pages/Dashboard";
-import Signup from "./pages/Signup";
-import Menu from "./pages/Menu";
+import { getCurrentUser } from "./components/authentication/userSlice";
+import Login from "./pages/Login";
+
+import AppLayout from "./components/ui/AppLayout";
+import AdminRoutes from "./routes/AdminRoutes";
+import KitchenRoutes from "./routes/KitchenRoutes";
+import WaiterRoutes from "./routes/WaiterRoutes";
+
+const queryClient = new QueryClient();
+
 function App() {
   const user = useSelector(getCurrentUser);
-  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -29,30 +28,14 @@ function App() {
           <Route
             element={user ? <AppLayout /> : <Navigate replace to="/login" />}
           >
+            {user?.role === "admin" && (
+              <Route path="/*" element={<AdminRoutes user={user} />} />
+            )}
             {user?.role === "waiter" && (
-              <>
-                <Route index element={<Navigate replace to="/newOrder" />} />
-                <Route path="/newOrder" element={<NewOrder />} />
-                <Route path="/ready" element={<ReadyToServe />} />
-                <Route path="/settings" element={<Settings />} />
-              </>
+              <Route path="/*" element={<WaiterRoutes user={user} />} />
             )}
             {user?.role === "kitchen" && (
-              <>
-                <Route index element={<Navigate replace to="/kitchen" />} />
-                <Route path="/kitchen" element={<Kitchen />} />
-                <Route path="/menu" element={<Menu />} />
-                <Route path="/settings" element={<Settings />} />
-              </>
-            )}
-            {user?.role === "admin" && (
-              <>
-                <Route index element={<Navigate replace to="/dashboard" />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/menu" element={<Menu />} />
-                <Route path="/settings" element={<Settings />} />
-              </>
+              <Route path="/*" element={<KitchenRoutes user={user} />} />
             )}
           </Route>
         </Routes>

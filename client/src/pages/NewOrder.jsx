@@ -1,5 +1,5 @@
-import Cart from "../features/cart/Cart";
-import MenuLayout from "../features/menu/MenuLayout";
+import Cart from "../components/cart/Cart";
+import MenuLayout from "../components/menu/MenuLayout";
 
 function NewOrder() {
   return (

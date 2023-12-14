@@ -1,4 +1,4 @@
-import Accordion from "../features/readyToServe/Accordion";
+import Accordion from "../components/readyToServe/Accordion";
 
 function ReadyToServe() {
   return (

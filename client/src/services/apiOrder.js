@@ -6,7 +6,6 @@ export async function getOrders(status, filter) {
 
     if (filter) {
       url = `${query}/${status}${filter}`;
-      console.log(url);
     } else if (status) {
       url = `${query}/${status}`;
     } else {
@@ -49,7 +48,6 @@ export async function createOrder(cart, tableNumber) {
 }
 
 export async function updateOrderStatus({ id, newStatus }) {
-  console.log(id, newStatus);
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(`/api/v1/orders/${id}`, {
