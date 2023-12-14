@@ -18,14 +18,17 @@ export async function login({ email, password }) {
 export async function signup({ email, password, firstName, role }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch("/api/v1/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      "https://restaurant-app-api.vercel.app/api/v1/user/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+        body: JSON.stringify({ email, password, firstName, role }),
       },
-      body: JSON.stringify({ email, password, firstName, role }),
-    });
+    );
     if (!res.ok) {
       throw new Error("Can not signup new user");
     }
@@ -39,14 +42,17 @@ export async function signup({ email, password, firstName, role }) {
 export async function updateUserPassword({ password, confirmPassword }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch("/api/v1/user/password/update", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      "https://restaurant-app-api.vercel.app/api/v1/user/password/update",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+        body: JSON.stringify({ password, confirmPassword }),
       },
-      body: JSON.stringify({ password, confirmPassword }),
-    });
+    );
     if (!res.ok) {
       throw new Error("Can not change user password");
     }

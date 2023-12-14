@@ -1,7 +1,7 @@
 export async function getOrders(status, filter) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    let query = "/api/v1/orders";
+    let query = "https://restaurant-app-api.vercel.app/api/v1/orders";
     let url;
 
     if (filter) {
@@ -30,7 +30,7 @@ export async function getOrders(status, filter) {
 export async function createOrder(cart, tableNumber) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch("/api/v1/orders/new", {
+    const res = await fetch("https://restaurant-app-api.vercel.app/api/v1/orders/new", {
       method: "POST",
 
       body: JSON.stringify({ cart, tableNumber }),
@@ -50,7 +50,7 @@ export async function createOrder(cart, tableNumber) {
 export async function updateOrderStatus({ id, newStatus }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`/api/v1/orders/${id}`, {
+    const res = await fetch(`https://restaurant-app-api.vercel.app/api/v1/orders/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ status: newStatus }),
       headers: {

@@ -1,7 +1,7 @@
 export async function getMenu(filter) {
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
   try {
-    let query = "/api/v1/menu";
+    let query = "https://restaurant-app-api.vercel.app/api/v1/menu";
     if (filter) {
       query = `/api/v1/menu${filter}`;
     }
@@ -18,14 +18,17 @@ export async function getMenu(filter) {
 export async function createMenuItem(newItem) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`/api/v1/menu/new`, {
-      method: "POST",
-      body: JSON.stringify(newItem),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      `https://restaurant-app-api.vercel.app/api/v1/menu/new`,
+      {
+        method: "POST",
+        body: JSON.stringify(newItem),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
       },
-    });
+    );
     if (!res.ok) throw new Error("Order can not be created");
     const data = await res.json();
     return data;
@@ -37,13 +40,16 @@ export async function createMenuItem(newItem) {
 export async function deleteMenuItem(id) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`/api/v1/menu/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      `https://restaurant-app-api.vercel.app/api/v1/menu/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
       },
-    });
+    );
     if (!res.ok) throw new Error("Order can not be deleted");
     const data = await res.json();
     return data;
@@ -55,14 +61,17 @@ export async function deleteMenuItem(id) {
 export async function updateMenuSoldOut({ id, newSoldOut }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`/api/v1/menu/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({ soldOut: newSoldOut }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      `https://restaurant-app-api.vercel.app/api/v1/menu/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ soldOut: newSoldOut }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
       },
-    });
+    );
     if (!res.ok) throw new Error("Order can not be updated");
     const data = await res.json();
     return data;

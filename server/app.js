@@ -11,7 +11,7 @@ const ErrorHandler = require("./utils/errorHandler");
 
 app.use(
   cors({
-    origin: [""],
+    origin: ["https://restaurant-app-api.vercel.app"],
     methods: ["POST", "GET", "PATCH", "DELETE"],
     credentials: true,
   })
