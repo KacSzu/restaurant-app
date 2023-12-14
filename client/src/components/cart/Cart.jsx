@@ -6,15 +6,11 @@ import { clearCart, getCart, getTotalCartPrice } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmOrder from "./ConfirmOrder";
 import Modal from "../ui/Modal";
-import { useCreateOrder } from "./useCreateOrder";
-import Loader from "../ui/Loader";
 const Cart = () => {
   const dispatch = useDispatch();
-  const { isPending } = useCreateOrder();
   const cart = useSelector(getCart);
   const emptyCart = !cart.length;
   const totalPrice = useSelector(getTotalCartPrice);
-  if (isPending) return <Loader />;
   return (
     <section className=" grid grid-rows-[0.05fr,0.75fr,0.05fr,0.15fr] divide-y divide-neutral-800 pt-8">
       <h2 className="text-center uppercase xl:text-lg">Your Cart</h2>

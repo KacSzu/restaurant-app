@@ -2,11 +2,20 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const cors = require("cors");
 const menuRoutes = require("./routes/menuRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middleware/errors");
 const ErrorHandler = require("./utils/errorHandler");
+
+app.use(
+  cors({
+    origin: [""],
+    methods: ["POST", "GET", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use((req, res, next) => {

@@ -5,6 +5,7 @@ import { useLogin } from "./useLogin";
 import SpinnerMini from "../ui/SpinnerMini";
 import Input from "../ui/Input";
 import Error from "../ui/Error";
+import Loader from "../ui/Loader";
 function LoginForm() {
   const { login, isPending, error } = useLogin();
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ function LoginForm() {
       },
     );
   }
+  if (isPending) return <Loader />;
   return (
     <form
       onSubmit={handleSubmit}
@@ -29,6 +31,7 @@ function LoginForm() {
     >
       <FormRow label="E-mail">
         <Input
+          disabled={isPending}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           id="email"
@@ -38,6 +41,7 @@ function LoginForm() {
       </FormRow>
       <FormRow label="Password">
         <Input
+          disabled={isPending}
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           id="password"
@@ -47,7 +51,7 @@ function LoginForm() {
       </FormRow>
       <div>{error ? <Error>{error}</Error> : null}</div>
       <div className="mt-3">
-        <Button variation="primary">
+        <Button disabled={isPending} variation="primary">
           {!isPending ? "Log in" : <SpinnerMini />}
         </Button>
       </div>

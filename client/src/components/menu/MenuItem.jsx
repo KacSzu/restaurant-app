@@ -7,14 +7,19 @@ import { getCurrentUser } from "../authentication/userSlice";
 import { useUpdateMenuSoldOut } from "./useUpdateMenuSoldOut";
 import Loader from "../ui/Loader";
 import { useDeluteMenuItem } from "./useDeleteMenuItem";
+import { useSearchParams } from "react-router-dom";
+import { PAGE_SIZE } from "../../utils/constants";
 function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   const user = useSelector(getCurrentUser);
+  const [searchParams] = useSearchParams();
+
   const { deleteMenuItem, isDeleting } = useDeluteMenuItem();
   const { updateMenuItem, isPending } = useUpdateMenuSoldOut();
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
-
+  const currentPage = searchParams.get("page") ? +searchParams.get("page") : 1;
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
   const isWorking = isDeleting || isPending;
 
   function handleAddToCart() {
@@ -37,8 +42,10 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
   }
   if (isWorking) return <Loader />;
   return (
-    <div className="grid grid-cols-[0.04fr,0.65fr,0.02fr,0.29fr] items-center justify-between pt-1 xl:grid-cols-[0.05fr,0.70fr,0.05fr,0.20fr]">
-      <p className=" mr-1 text-4xl font-light xl:text-5xl">{index + 1}</p>
+    <div className=" grid grid-cols-[0.08fr,0.65fr,0.05fr,0.22fr] items-center justify-between pt-1 xl:grid-cols-[0.09fr,0.60fr,0.01fr,0.20fr]">
+      <p className=" mr-1 text-4xl font-light xl:text-5xl">
+        {startIndex + index + 1}
+      </p>
       <div className="flex flex-col gap-1">
         <h3 className="text-base font-semibold xl:text-lg ">{name}</h3>
         {ingredients && (
@@ -76,7 +83,7 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
         {user?.role === "admin" && (
           <Button
             onClick={() => handleDeleteItem(id)}
-            disabled={isPending}
+            disabled={isWorking}
             variation={"danger"}
           >
             Delete

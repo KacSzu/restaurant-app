@@ -32,6 +32,7 @@ function AddMenuItemForm({ onCloseModal }) {
       <div className=" flex flex-col gap-4">
         <FormRow label="Category">
           <select
+            disabled={isPending}
             className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
             id="category"
@@ -45,6 +46,7 @@ function AddMenuItemForm({ onCloseModal }) {
         </FormRow>
         <FormRow error={errors?.name?.message} label="Name">
           <input
+            disabled={isPending}
             className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
             id="name"
@@ -54,6 +56,7 @@ function AddMenuItemForm({ onCloseModal }) {
         </FormRow>
         <FormRow error={errors?.unitPrice?.message} label="Price">
           <input
+            disabled={isPending}
             placeholder="Type unit price"
             type="number"
             id="unitPrice"
@@ -63,6 +66,7 @@ function AddMenuItemForm({ onCloseModal }) {
         </FormRow>
         <FormRow label="Ingredients">
           <textarea
+            disabled={isPending}
             placeholder="Each ingredient separated by coma, Example: tomato,basil,mozzarela"
             className="h-[125px] w-[300px] rounded-lg border border-neutral-800 px-2 py-1 text-base duration-500 placeholder:uppercase  focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
@@ -73,6 +77,7 @@ function AddMenuItemForm({ onCloseModal }) {
       </div>
       <div className="space-x-4 py-4 text-center">
         <Button
+          disabled={isPending}
           onClick={(e) => {
             e.preventDefault();
             reset();
@@ -83,7 +88,9 @@ function AddMenuItemForm({ onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button variation="primary">Submit</Button>
+        <Button disabled={isPending} variation="primary">
+          Submit
+        </Button>
       </div>
     </form>
   );

@@ -17,6 +17,7 @@ function UpdatePassword() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <FormRow error={errors?.password?.message} label="Change password">
         <input
+          disabled={isUpdating}
           className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
           id="password"
           placeholder="Type your new password"
@@ -41,6 +42,7 @@ function UpdatePassword() {
         label="Confirm new password"
       >
         <input
+          disabled={isUpdating}
           className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
           id="confirmPassword"
           type="password"
@@ -53,7 +55,7 @@ function UpdatePassword() {
         />
       </FormRow>
       <div className="mt-3 text-end">
-        <Button variation="primary">
+        <Button disabled={isUpdating} variation="primary">
           {isUpdating ? <SpinnerMini /> : "Update"}
         </Button>
       </div>

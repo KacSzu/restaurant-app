@@ -4,21 +4,20 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const APIFilters = require("../utils/apiFilters");
 const mongoose = require("mongoose");
 
-exports.getMenu = catchAsyncErrors(async (req, res) => {
-  const apiFilters = new APIFilters(Menu.find(), {
-    category: req.query.category,
-  }).filter();
-
+exports.getMenu = catchAsyncErrors(async (req, res, next) => {
+  const categoryFilter = req.query.category
+    ? { category: req.query.category }
+    : {};
+  const apiFilters = new APIFilters(Menu.find(), categoryFilter).filter();
   const menu = await apiFilters.query;
-  const count = menu.length;
 
-  const size = process.env.PAGE_SIZE;
+  const count = menu.length;
+  const pageSize = 7;
 
   const currentPage = parseInt(req.query.page, 10) || 1;
-  const startIndex = (currentPage - 1) * Number(size);
-  const endIndex = startIndex + Number(size);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
   const paginatedData = menu.slice(startIndex, endIndex);
-
   if (!menu) next(new ErrorHandler("Menu not found", 404));
   return res.status(200).json({
     success: true,
@@ -27,7 +26,7 @@ exports.getMenu = catchAsyncErrors(async (req, res) => {
   });
 });
 
-exports.updateMenuSoldOut = catchAsyncErrors(async (req, res) => {
+exports.updateMenuSoldOut = catchAsyncErrors(async (req, res, next) => {
   const id = req.params.id;
   if (mongoose.Types.ObjectId.isValid(id)) {
     const menuItem = await Menu.findOneAndUpdate(
@@ -47,7 +46,7 @@ exports.updateMenuSoldOut = catchAsyncErrors(async (req, res) => {
     return next(new ErrorHandler("Invalid menu item ID", 404));
   }
 });
-exports.createMenuItem = catchAsyncErrors(async (req, res) => {
+exports.createMenuItem = catchAsyncErrors(async (req, res, next) => {
   const { category, name, unitPrice, ingredients } = req.body;
   const menuItem = await Menu.create({
     category,
@@ -65,7 +64,7 @@ exports.createMenuItem = catchAsyncErrors(async (req, res) => {
   });
 });
 
-exports.deleteMenuItem = catchAsyncErrors(async (req, res) => {
+exports.deleteMenuItem = catchAsyncErrors(async (req, res, next) => {
   const id = req.params.id;
   if (mongoose.Types.ObjectId.isValid(id)) {
     const menuItem = await Menu.findOneAndDelete({ _id: id });

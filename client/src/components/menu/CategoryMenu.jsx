@@ -8,17 +8,14 @@ import { getCurrentUser } from "../authentication/userSlice";
 
 function CategoryMenu() {
   const user = useSelector(getCurrentUser);
-  console.log(user);
   const { menu, isLoading } = useMenu();
-  console.log(menu);
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
   return (
-    <div className="mx-12">
+    <div className="mx-12 ">
       <div className="  flex justify-end gap-3 px-2 py-1 text-2xl text-neutral-800">
-        &larr;
         <button
-          className="text-base"
+          className="text-lg"
           disabled={isLoading}
           onClick={
             user?.role !== "waiter"
@@ -26,10 +23,10 @@ function CategoryMenu() {
               : () => navigate("/newOrder")
           }
         >
-          Go back
+          <span className="text-2xl"> &larr; </span> Go back
         </button>
       </div>
-      <div className="flex flex-col gap-3 divide-y divide-neutral-800 rounded-lg bg-neutral-200 px-4 py-3 ">
+      <div className="flex  flex-col gap-3 divide-y divide-neutral-800 rounded-lg bg-neutral-200 px-4 py-3 ">
         {menu?.data?.paginatedData?.map(
           ({ _id, name, unitPrice, ingredients, soldOut }, index) => (
             <MenuItem

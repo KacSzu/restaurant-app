@@ -33,12 +33,12 @@ function Button({ children, to, variation, onClick, disabled, active }) {
   };
   if (to)
     return (
-      <Link to={to} className={styles[variation]}>
+      <Link to={to} disabled={disabled} className={styles[variation]}>
         {children}
       </Link>
     );
   return (
-    <button onClick={onClick} className={styles[variation]}>
+    <button onClick={onClick} disabled={disabled} className={styles[variation]}>
       {children}
     </button>
   );

@@ -10,6 +10,7 @@ import AppLayout from "./components/ui/AppLayout";
 import AdminRoutes from "./routes/AdminRoutes";
 import KitchenRoutes from "./routes/KitchenRoutes";
 import WaiterRoutes from "./routes/WaiterRoutes";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +26,7 @@ function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           />
 
-          <Route
-            element={user ? <AppLayout /> : <Navigate replace to="/login" />}
-          >
+          <Route element={user ? <AppLayout /> : <Navigate to="/login" />}>
             {user?.role === "admin" && (
               <Route path="/*" element={<AdminRoutes user={user} />} />
             )}
@@ -38,6 +37,7 @@ function App() {
               <Route path="/*" element={<KitchenRoutes user={user} />} />
             )}
           </Route>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster

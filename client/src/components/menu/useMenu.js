@@ -7,10 +7,10 @@ export function useMenu() {
   const category = searchParams.get("category") || null;
   const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
   const filter = !category ? null : `?category=${category}&page=${page}`;
-  console.log(page);
   const { data: menu, isLoading } = useQuery({
     queryFn: () => getMenu(filter),
     queryKey: ["menu", category, page],
   });
+
   return { menu, isLoading };
 }

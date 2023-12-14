@@ -3,6 +3,7 @@ import FormRow from "../ui/FormRow";
 import SpinnerMini from "../ui/SpinnerMini";
 import { useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
+import Loader from "../ui/Loader";
 function SignupForm() {
   const { signup, isPending } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
@@ -17,6 +18,7 @@ function SignupForm() {
       },
     );
   }
+  if (isPending) return <Loader />;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

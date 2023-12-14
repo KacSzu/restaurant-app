@@ -6,7 +6,7 @@ import Settings from "../pages/Settings";
 
 function AdminRoutes({ user }) {
   if (user?.role !== "admin") {
-    return <Navigate replace to="/login" />;
+    return <Navigate replace to="/" />;
   }
 
   return (

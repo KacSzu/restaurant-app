@@ -5,6 +5,7 @@ import { useCreateOrder } from "./useCreateOrder";
 import Error from "../ui/Error";
 import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
+import Loader from "../ui/Loader";
 
 function ConfirmOrder({ onCloseModal }) {
   const { createOrder, isPending } = useCreateOrder();
@@ -19,6 +20,7 @@ function ConfirmOrder({ onCloseModal }) {
     dispatch(setTableNumber(1));
     onCloseModal?.();
   }
+  if (isPending) return <Loader />;
   return (
     <form
       className=" mx-auto my-8 flex w-[450px] flex-col items-center  space-y-4 px-6"
@@ -28,6 +30,7 @@ function ConfirmOrder({ onCloseModal }) {
       <div className=" flex flex-col gap-4">
         <FormRow label="Please add table number">
           <Input
+            disabled={isPending}
             placeholder="#table number"
             name="tableNumber"
             value={tableNumber}
@@ -55,7 +58,7 @@ function ConfirmOrder({ onCloseModal }) {
         >
           Cancel
         </Button>
-        <Button disabled={isPending || !tableNumber} variation="primary">
+        <Button disabled={isPending || !tableNumber } variation="primary">
           Submit
         </Button>
       </div>

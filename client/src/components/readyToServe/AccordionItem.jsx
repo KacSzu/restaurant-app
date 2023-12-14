@@ -16,6 +16,7 @@ function AccordionItem({
   function handleClick() {
     updateOrder({ id, newStatus });
   }
+
   return (
     <div className=" rounded-lg bg-neutral-200 px-6 py-2 xl:text-lg">
       <div className="flex justify-between ">
