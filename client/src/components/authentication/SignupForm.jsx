@@ -54,8 +54,7 @@ function SignupForm() {
             pattern: {
               value:
                 /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
-              message:
-                "Password must contain at least 1 capital letter, 1 number, and 1 special character.",
+              message: "Password is too weak.",
             },
           })}
         />

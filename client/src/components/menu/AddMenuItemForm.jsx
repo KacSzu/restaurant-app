@@ -34,7 +34,7 @@ function AddMenuItemForm({ onCloseModal }) {
           <select
             className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
-            id="categoty"
+            id="category"
             {...register("category", { required: "This field is required" })}
           >
             <option>Pizza</option>
@@ -56,8 +56,8 @@ function AddMenuItemForm({ onCloseModal }) {
           <input
             placeholder="Type unit price"
             type="number"
-            className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             id="unitPrice"
+            className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             {...register("unitPrice", { required: "This field is required" })}
           />
         </FormRow>
@@ -66,7 +66,7 @@ function AddMenuItemForm({ onCloseModal }) {
             placeholder="Each ingredient separated by coma, Example: tomato,basil,mozzarela"
             className="h-[125px] w-[300px] rounded-lg border border-neutral-800 px-2 py-1 text-base duration-500 placeholder:uppercase  focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
             type="text"
-            id="name"
+            id="ingredients"
             {...register("ingredients")}
           />
         </FormRow>

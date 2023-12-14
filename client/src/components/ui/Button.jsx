@@ -27,6 +27,9 @@ function Button({ children, to, variation, onClick, disabled, active }) {
           ? "bg-emerald-200 focus:ring-emerald-400 hover:bg-emerald-400 border-emerald-700"
           : "bg-neutral-200 focus:ring-neutral-400 hover:bg-neutral-400 border-neutral-700"
       }   `,
+    pagination:
+      base +
+      "  xl:text-lg  bg-neutral-300 py-2 px-3 focus:ring-neutral-400 hover:bg-neutral-400   border-neutral-700  ",
   };
   if (to)
     return (

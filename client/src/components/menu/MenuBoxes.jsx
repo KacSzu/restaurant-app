@@ -25,7 +25,7 @@ const menuOptions = [
   {
     title: "Wine's",
     img: "wines-160.jpg",
-    category: "wines",
+    category: "wine",
   },
 ];
 

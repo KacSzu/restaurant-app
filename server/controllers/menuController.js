@@ -5,14 +5,26 @@ const APIFilters = require("../utils/apiFilters");
 const mongoose = require("mongoose");
 
 exports.getMenu = catchAsyncErrors(async (req, res) => {
-  const apiFilters = new APIFilters(Menu.find(), req.query).filter();
+  const apiFilters = new APIFilters(Menu.find(), {
+    category: req.query.category,
+  }).filter();
+
   const menu = await apiFilters.query;
+  const count = menu.length;
+
+  const size = process.env.PAGE_SIZE;
+
+  const currentPage = parseInt(req.query.page, 10) || 1;
+  const startIndex = (currentPage - 1) * Number(size);
+  const endIndex = startIndex + Number(size);
+  const paginatedData = menu.slice(startIndex, endIndex);
 
   if (!menu) next(new ErrorHandler("Menu not found", 404));
-
-  return res
-    .status(200)
-    .json({ success: true, message: "Successfully retrieved menu", data: menu });
+  return res.status(200).json({
+    success: true,
+    message: "Successfully retrieved menu",
+    data: { count, paginatedData },
+  });
 });
 
 exports.updateMenuSoldOut = catchAsyncErrors(async (req, res) => {
@@ -52,6 +64,7 @@ exports.createMenuItem = catchAsyncErrors(async (req, res) => {
     data: menuItem,
   });
 });
+
 exports.deleteMenuItem = catchAsyncErrors(async (req, res) => {
   const id = req.params.id;
   if (mongoose.Types.ObjectId.isValid(id)) {

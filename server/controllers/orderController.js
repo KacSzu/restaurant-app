@@ -17,7 +17,7 @@ exports.getOrders = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-exports.getOrdersByStatus = catchAsyncErrors(async (req, res, next) => {
+exports.getOrdersByStatus = catchAsyncErrors(async (req, res) => {
   const { last } = req.query;
   let orders;
   let apiFilters;
