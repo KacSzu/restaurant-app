@@ -22,7 +22,7 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          {!user && <Route path="/" element={<Homepage />} />}
           <Route
             path="/login"
             element={user ? <Navigate to="/" /> : <Login />}

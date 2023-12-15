@@ -1,5 +1,4 @@
 export async function getMenu(filter) {
-  console.log(filter);
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
   try {
     let query = "https://restaurant-app-api-b3nr.onrender.com/api/v1/menu";
@@ -11,7 +10,6 @@ export async function getMenu(filter) {
     });
     if (!res.ok) throw new Error("Menu can not be loaded");
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error.message);
