@@ -1,7 +1,7 @@
 export async function login({ email, password }) {
   try {
     const res = await fetch(
-      "https://restaurant-app-api.vercel.app/api/v1/user/login",
+      "https://restaurant-app-api-b3nr.onrender.com/api/v1/user/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
