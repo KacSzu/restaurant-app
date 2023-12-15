@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 import { useSearchParams } from "react-router-dom";
 import MenuBox from "./MenuBox";
 import Modal from "../ui/Modal";
-import AddMenuItemForm from "./addMenuItemForm";
+import AddMenuItemForm from "./AddMenuItemForm";
 
 const menuOptions = [
   {
