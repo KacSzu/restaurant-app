@@ -11,6 +11,7 @@ import AdminRoutes from "./routes/AdminRoutes";
 import KitchenRoutes from "./routes/KitchenRoutes";
 import WaiterRoutes from "./routes/WaiterRoutes";
 import PageNotFound from "./pages/PageNotFound";
+import Homepage from "./pages/Homepage";
 
 const queryClient = new QueryClient();
 
@@ -21,12 +22,13 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Homepage />} />
           <Route
             path="/login"
             element={user ? <Navigate to="/" /> : <Login />}
           />
 
-          <Route element={user ? <AppLayout /> : <Navigate to="/login" />}>
+          <Route element={user ? <AppLayout /> : <Navigate to="/" />}>
             {user?.role === "admin" && (
               <Route path="/*" element={<AdminRoutes user={user} />} />
             )}
