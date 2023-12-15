@@ -18,6 +18,7 @@ app.use(
 );
 
 app.use(express.json());
+
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
@@ -56,3 +57,5 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+module.exports = app;
