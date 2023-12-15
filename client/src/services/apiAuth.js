@@ -22,7 +22,7 @@ export async function signup({ email, password, firstName, role }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(
-      "https://restaurant-app-api-b3nr.onrender.com/v1/user/signup",
+      "https://restaurant-app-api-b3nr.onrender.com/api/v1/user/signup",
       {
         method: "POST",
         headers: {
