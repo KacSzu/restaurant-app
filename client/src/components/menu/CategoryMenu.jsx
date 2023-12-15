@@ -9,6 +9,7 @@ import { getCurrentUser } from "../authentication/userSlice";
 function CategoryMenu() {
   const user = useSelector(getCurrentUser);
   const { menu, isLoading } = useMenu();
+  console.log(menu);
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
   return (

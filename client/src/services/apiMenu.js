@@ -1,15 +1,17 @@
 export async function getMenu(filter) {
+  console.log(filter);
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
   try {
     let query = "https://restaurant-app-api-b3nr.onrender.com/api/v1/menu";
     if (filter) {
-      query = `/api/v1/menu${filter}`;
+      query = `https://restaurant-app-api-b3nr.onrender.com/api/v1/menu${filter}`;
     }
     const res = await fetch(query, {
       headers: { Authorization: `Bearer ${user?.token}` },
     });
     if (!res.ok) throw new Error("Menu can not be loaded");
     const data = await res.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error.message);
