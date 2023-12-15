@@ -1,7 +1,7 @@
 export async function getOrders(status, filter) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    let query = "https://restaurant-app-api.vercel.app/api/v1/orders";
+    let query = "https://restaurant-app-api-b3nr.onrender.com/api/v1/orders";
     let url;
 
     if (filter) {
@@ -30,15 +30,18 @@ export async function getOrders(status, filter) {
 export async function createOrder(cart, tableNumber) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch("https://restaurant-app-api.vercel.app/api/v1/orders/new", {
-      method: "POST",
+    const res = await fetch(
+      "https://restaurant-app-api-b3nr.onrender.com/api/v1/orders/new",
+      {
+        method: "POST",
 
-      body: JSON.stringify({ cart, tableNumber }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+        body: JSON.stringify({ cart, tableNumber }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
       },
-    });
+    );
     if (!res.ok) throw new Error("Order can not be created");
     const data = await res.json();
     return data;
@@ -50,14 +53,17 @@ export async function createOrder(cart, tableNumber) {
 export async function updateOrderStatus({ id, newStatus }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
-    const res = await fetch(`https://restaurant-app-api.vercel.app/api/v1/orders/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({ status: newStatus }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
+    const res = await fetch(
+      `https://restaurant-app-api-b3nr.onrender.com/api/v1/orders/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ status: newStatus }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
       },
-    });
+    );
     if (!res.ok) throw new Error("Order can not be updated");
     const data = await res.json();
     return data;

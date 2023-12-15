@@ -1,10 +1,13 @@
 export async function login({ email, password }) {
   try {
-    const res = await fetch("/api/v1/user/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await fetch(
+      "https://restaurant-app-api.vercel.app/api/v1/user/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      },
+    );
     if (!res.ok) {
       throw new Error("User can not log in");
     }
@@ -19,7 +22,7 @@ export async function signup({ email, password, firstName, role }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(
-      "https://restaurant-app-api.vercel.app/api/v1/user/signup",
+      "https://restaurant-app-api-b3nr.onrender.com/v1/user/signup",
       {
         method: "POST",
         headers: {
@@ -43,7 +46,7 @@ export async function updateUserPassword({ password, confirmPassword }) {
   const user = JSON.parse(localStorage.getItem("user") || null);
   try {
     const res = await fetch(
-      "https://restaurant-app-api.vercel.app/api/v1/user/password/update",
+      "https://restaurant-app-api-b3nr.onrender.com/api/v1/user/password/update",
       {
         method: "POST",
         headers: {

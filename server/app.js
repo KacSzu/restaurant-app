@@ -9,13 +9,7 @@ const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middleware/errors");
 const ErrorHandler = require("./utils/errorHandler");
 
-app.use(
-  cors({
-    origin: ["https://restaurant-app-api-b3nr.onrender.com"],
-    methods: ["POST", "GET", "PATCH", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
