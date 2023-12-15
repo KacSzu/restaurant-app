@@ -42,7 +42,7 @@ password: Admin123!
 #### Waiter
 
 email: waiter@restaurant.com
-password: Kitchen123!
+password: Waiter123!
 
 #### Kitchen
 
