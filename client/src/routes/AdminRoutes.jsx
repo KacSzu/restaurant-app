@@ -4,11 +4,7 @@ import Signup from "../pages/Signup";
 import Menu from "../pages/Menu";
 import Settings from "../pages/Settings";
 
-function AdminRoutes({ user }) {
-  if (user?.role !== "admin") {
-    return <Navigate replace to="/" />;
-  }
-
+function AdminRoutes() {
   return (
     <Routes>
       <Route index element={<Navigate replace to="dashboard" />} />

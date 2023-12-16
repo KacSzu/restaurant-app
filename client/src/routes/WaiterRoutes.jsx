@@ -3,10 +3,7 @@ import NewOrder from "../pages/NewOrder";
 import ReadyToServe from "../pages/ReadyToServe";
 import Settings from "../pages/Settings";
 
-function WaiterRoutes({ user }) {
-  if (user?.role !== "waiter") {
-    return <Navigate replace to="/" />;
-  }
+function WaiterRoutes() {
   return (
     <Routes>
       <Route index element={<Navigate replace to="newOrder" />} />
