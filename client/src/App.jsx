@@ -28,18 +28,18 @@ function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           />
 
-          <Route element={user ? <AppLayout /> : <Navigate to="/" />}>
+          <Route element={user ? <AppLayout /> : <Navigate to="/login" />}>
             {user?.role === "admin" && (
-              <Route path="/*" element={<AdminRoutes user={user} />} />
+              <Route path="/*" element={<AdminRoutes />} />
             )}
             {user?.role === "waiter" && (
-              <Route path="/*" element={<WaiterRoutes user={user} />} />
+              <Route path="/*" element={<WaiterRoutes />} />
             )}
             {user?.role === "kitchen" && (
-              <Route path="/*" element={<KitchenRoutes user={user} />} />
+              <Route path="/*" element={<KitchenRoutes />} />
             )}
+            <Route path="*" element={<PageNotFound />} />
           </Route>
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster
