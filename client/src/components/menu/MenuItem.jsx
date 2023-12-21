@@ -83,7 +83,7 @@ function MenuItem({ id, name, ingredients, unitPrice, index, soldOut }) {
         {user?.role === "admin" && (
           <Button
             onClick={() => handleDeleteItem(id)}
-            disabled={isWorking}
+            disabled={true}
             variation={"danger"}
           >
             Delete

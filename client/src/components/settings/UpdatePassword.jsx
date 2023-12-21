@@ -1,6 +1,5 @@
 import Button from "../ui/Button";
 import FormRow from "../ui/FormRow";
-import SpinnerMini from "../ui/SpinnerMini";
 import { useUpdateUserPassword } from "./useUpdateUserPassword";
 import { useForm } from "react-hook-form";
 function UpdatePassword() {
@@ -55,8 +54,8 @@ function UpdatePassword() {
         />
       </FormRow>
       <div className="mt-3 text-end">
-        <Button disabled={isUpdating} variation="primary">
-          {isUpdating ? <SpinnerMini /> : "Update"}
+        <Button disabled={true} variation="primary">
+          Update
         </Button>
       </div>
     </form>
