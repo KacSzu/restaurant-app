@@ -61,7 +61,17 @@ function AddMenuItemForm({ onCloseModal }) {
             type="number"
             id="unitPrice"
             className="w-[300px] rounded-lg border border-neutral-800 px-6 py-3 text-base duration-500 placeholder:uppercase   focus:outline-none focus:ring focus:ring-neutral-400  focus:ring-offset-2 xl:w-[350px] xl:text-lg"
-            {...register("unitPrice", { required: "This field is required" })}
+            {...register("unitPrice", {
+              required: "This field is required",
+              min: {
+                value: 1,
+                message: "Price should be minimum 1",
+              },
+              pattern: {
+                value: /^(?!0)/,
+                message: "Price can not start with 0.",
+              },
+            })}
           />
         </FormRow>
         <FormRow label="Ingredients">
